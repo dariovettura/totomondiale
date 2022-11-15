@@ -5,7 +5,7 @@ import Link from "next/link"
 
 
 interface Props {
-onclick():void
+onclick?():void
 
 }
 const InfoTab: React.FC<Props> = ({ onclick}) => {

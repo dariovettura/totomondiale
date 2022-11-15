@@ -1,20 +1,13 @@
 import InfoTab from "./menu/InfoTab"
-import Logo from "./menu/Logo"
+
 
 
 
 const Sidebar = (): JSX.Element => (
     <header
-    className="sidebar"
-  
-    >
+    className="sidebar">
          <InfoTab></InfoTab>
-      
-       
-      
-       
-    
-    </header>
+       </header>
 )
 
 export default Sidebar
