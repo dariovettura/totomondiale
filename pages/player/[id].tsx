@@ -21,7 +21,7 @@ const Player: NextPage<Props> = ({ posts, infos }) => {
   const { id } = router.query
 
 
-   const [item,setItem] = React.useState<any>([])
+   const [item,setItem] = React.useState<any[]>([])
    const [name,setName] = React.useState<any>([])
 
 
@@ -53,8 +53,9 @@ const Player: NextPage<Props> = ({ posts, infos }) => {
   <div style={{ marginTop: "60px", marginBottom: "60px", width: "100vw", height: "100%", display: "flex", flexDirection: "column", gap: 20, alignItems: "center", justifyContent: "center" }}>
     <span style={{fontSize:"30px",fontWeight:"bold"}}>{name}</span>
     
-{item.map((el: { home_team: { logo: string | undefined; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined }; away_team: { name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; logo: string | undefined }; result: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined })=>
-  <div style={{ display: "flex", flexDirection: "column" }}>
+{item.map(
+(el,i) =>
+  <div key={i} style={{ display: "flex", flexDirection: "column" }}>
  
   <div>
     <img style={{ width: "30px", height: "30px" }} src={el?.home_team?.logo} alt="" /> {el?.home_team?.name} - {el?.away_team?.name} <img style={{ width: "30px", height: "30px" }} src={el?.away_team?.logo} alt="" /> 

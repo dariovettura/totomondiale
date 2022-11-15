@@ -207,8 +207,8 @@ export default function Insert() {
 
       <span onClick={() => updateMyResults()}>updateMyResult </span> */}
       <div style={{ marginTop: "60px", marginBottom: "60px", width: "100vw", height: "100%", display: "flex", flexDirection: "column", gap: 20, alignItems: "center", justifyContent: "center" }}>
-        {cal.map(el => {
-          return <div style={{ display: "flex", flexDirection: "column" }}>
+        {cal.map((el,i) => {
+          return <div key={i} style={{ display: "flex", flexDirection: "column" }}>
             <div className='dv-d-flex dv-f-col dv-gap-0 dv-ai-center'>
               <span> GRUPPO {el.group.group_name} </span>
               <span> DATA {el.match_start}</span>

@@ -30,8 +30,8 @@ export default function Classifica() {
   return (
     <>
       <div style={{ width: "100vw", height: "100vh", display: "flex", flexDirection: "column", gap: 20, alignItems: "center", justifyContent: "center" }}>
-        {allPlayer?.map(el => {
-          return <Link href={`/player/${+el.number}`}>
+        {allPlayer?.map((el,i) => {
+          return <Link key={i} href={`/player/${+el.number}`}>
          
             {el.billing.first_name} = {JSON.parse(el?.customer_note)[0]?.totScore}
 
