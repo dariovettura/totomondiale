@@ -1,0 +1,15 @@
+
+
+
+$purple_bg_gradient:linear-gradient(rgba(194,45,176,0.7), rgba(52, 0, 62,0.6));
+$dark:#000;
+$light:#fff;
+$rc_light_blue:#49D7DC;
+$rc_purple:#C22DB0;
+
+$variants:(
+  ligth-blue:$rc_light_blue,
+  light-puprle:$rc_purple,
+  dark:$dark,
+  light:$light
+)
