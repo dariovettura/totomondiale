@@ -91,7 +91,7 @@ export default function Classifica() {
     getFinalResult()
   }, [])
 
-  React.useMemo(() => {
+  React.useEffect(() => {
     if (allPlayer.length > 0) getFinalResuls()
   }, [allPlayer])
 
