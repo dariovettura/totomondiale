@@ -63,6 +63,19 @@ export default function Classifica() {
     return finalRes
   }
 
+  const getFinalResuls = () => {
+    var finalmente = getOurFinishedMatch()
+      .map(el => {
+        return compareResults()
+          .map(els => {
+            if (els[0]?.id == el[0]?.id) { return { ...el, totScore: els.length } }
+            else { return { ...el, totScore: 0 } }
+          })
+      })
+    console.log({ finalmente })
+    return finalmente
+  }
+
 
   const getClassifica = () => {
     setLoader(true)
@@ -79,7 +92,7 @@ export default function Classifica() {
   }, [])
 
   React.useMemo(() => {
-    if (allPlayer.length > 0) compareResults()
+    if (allPlayer.length > 0) getFinalResuls()
   }, [allPlayer])
 
   React.useEffect(() => {
@@ -97,10 +110,10 @@ export default function Classifica() {
       <div style={{ width: "100vw", height: "100vh", display: "flex", flexDirection: "column", gap: 20, alignItems: "center", justifyContent: "center", marginTop: "20px", fontSize: "30px" }}>
         <span style={{ fontSize: "30px", fontWeight: "bold" }}>Classifica</span>
         <span style={{ fontSize: "15px", fontWeight: "bold", marginBottom: "40px" }}>Clicca sul nome per vedere la sua scedina</span>
-        {allPlayer?.map((el, i) => {
-          return <Link key={i} href={`/player/${+el.number}`}>
+        {getFinalResuls()?.map((el, i) => {
+          return <Link key={i} href={`/player/${+el[0][0]?.id}`}>
 
-            {el.billing.first_name} = {JSON.parse(el?.customer_note)[0]?.totScore}
+            {el[0][0].name} = {el[i].totScore}
 
           </Link>
         })}
