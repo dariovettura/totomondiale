@@ -42,7 +42,7 @@ export default function Insert() {
   const [loader, setLoader] = useState<any>(false)
   const [error, setError] = useState<any>(false)
 
-  const [myResultAdd, setMyResultAdd] = useState<any>("[]")
+
 
   console.log(myName)
 
@@ -98,7 +98,7 @@ export default function Insert() {
 
 
   React.useEffect(() => { console.log({ myResult }) }, [myResult])
-  React.useEffect(() => { console.log(myResultAdd.replace(/(^"|"$)/g, '')) }, [myResultAdd])
+
 
   const onInputResult = (result: any, match: number) => {
     return setMyResult(prev => prev.map(el => { if (el.match_id == match) { return { ...el, result: result } } else { return el } }))
@@ -208,7 +208,7 @@ export default function Insert() {
       <span onClick={() => updateMyResults()}>updateMyResult </span> */}
       <div style={{ marginTop: "60px", marginBottom: "60px", width: "100vw", height: "100%", display: "flex", flexDirection: "column", gap: 20, alignItems: "center", justifyContent: "center" }}>
         {cal.map((el, i) => {
-          return <div key={i}  style={{ display: "flex", flexDirection: "column",paddingTop:"20px",paddingBottom:"20px" }}>
+          return <div key={i}  style={{ display: "flex", flexDirection: "column",marginTop:"20px",marginBottom:"20px" }}>
             <div className='dv-d-flex dv-f-col dv-gap-0 dv-ai-center'>
               <span> GRUPPO {el.group.group_name} </span>
               <span> DATA {el.match_start}</span>
@@ -228,10 +228,10 @@ export default function Insert() {
           <span>
             Inserisci il tuo nomecognome senza spazi
           </span>
-          <TextField style={{paddingTop:"20px",paddingBottom:"20px"}}  onChange={(e) => setMyName(e.target.value)} id="outlined-basic" label="nomecognome" variant="outlined" />
-          <Button style={{paddingTop:"20px",paddingBottom:"20px"}}  onClick={inviaResults}>Invia schedina</Button>
-          <span style={{paddingTop:"20px",paddingBottom:"20px"}} >Hai già inviato la tua schedina e vuoi modificarla?</span>
-          <Button style={{paddingTop:"20px",paddingBottom:"20px"}}  onClick={() => setOpenDialogup(true)}>Modifica schedina</Button>
+          <TextField style={{marginTop:"20px",marginBottom:"20px"}}  onChange={(e) => setMyName(e.target.value)} id="outlined-basic" label="nomecognome" variant="outlined" />
+          <Button style={{marginTop:"20px",marginBottom:"20px"}}  onClick={inviaResults}>Invia schedina</Button>
+          <span style={{marginTop:"20px",marginBottom:"20px"}} >Hai già inviato la tua schedina e vuoi modificarla?</span>
+          <Button style={{marginTop:"20px",marginBottom:"20px"}}  onClick={() => setOpenDialogup(true)}>Modifica schedina</Button>
 
         </div>
 
@@ -252,16 +252,16 @@ export default function Insert() {
       </Dialog>
       <Dialog ref={afterUpdateDialog} onClose={() => setOpenDialogup(false)} open={openDialogUp}>
         <div style={{ height: "75vh", display: "flex", flexDirection: "column", gap: 20, padding: "10px", textAlign: "center", alignItems: "center", justifyContent: "center" }}>
-          <span style={{paddingTop:"20px",paddingBottom:"20px"}}>
+          <span style={{marginTop:"20px",marginBottom:"20px"}}>
             Inserisci la tua password
           </span>
-          <TextField style={{paddingTop:"20px",paddingBottom:"20px"}} value={codicePers} type='number' onChange={(e) => setCodicePers(e.target.value)} id="outlined-basic" label="password" variant="outlined" />
+          <TextField style={{marginTop:"20px",marginBottom:"20px"}} value={codicePers} type='number' onChange={(e) => setCodicePers(e.target.value)} id="outlined-basic" label="password" variant="outlined" />
 
-          <span style={{paddingTop:"20px",paddingBottom:"20px"}}>
+          <span style={{marginTop:"20px",marginBottom:"20px"}}>
             Inserisci il tuo nome
           </span>
-          <TextField  style={{paddingTop:"20px",paddingBottom:"20px"}}  onChange={(e) => setMyName(e.target.value)} id="outlined-basic" label="nomecognome" variant="outlined" />
-          <Button style={{paddingTop:"20px",paddingBottom:"20px"}} onClick={updateMyResults}>Invia schedina modificata</Button>
+          <TextField  style={{marginTop:"20px",marginBottom:"20px"}}  onChange={(e) => setMyName(e.target.value)} id="outlined-basic" label="nomecognome" variant="outlined" />
+          <Button style={{marginTop:"20px",marginBottom:"20px"}} onClick={updateMyResults}>Invia schedina modificata</Button>
 
 
 

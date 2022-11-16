@@ -7,17 +7,22 @@ import axios from 'axios';
 import Link from 'next/link';
 import { Button } from 'antd';
 import { spawn } from 'child_process';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 
 export default function Classifica() {
 
   const [allPlayer, setAllPlayer] = React.useState<any[]>([])
+  const [loader, setLoader] = useState<any>(false)
 
   const getClassifica = () => {
+    setLoader(true)
     return axios.get("/api/getAllSchedine").then(
-      res => { setAllPlayer(res.data) }
-    )
+
+      res => { setAllPlayer(res.data) ;setLoader(false)}
+    ).catch(err=>setLoader(false))
   }
 
   React.useEffect(() => {
@@ -29,7 +34,13 @@ export default function Classifica() {
 
   return (
     <>
-      <div style={{ width: "100vw", height: "100vh", display: "flex", flexDirection: "column", gap: 20, alignItems: "center", justifyContent: "center" }}>
+     <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={loader}
+        onClick={() => setLoader(false)}
+      >
+        <CircularProgress color="inherit" /></Backdrop>
+      <div style={{ width: "100vw", height: "100vh", display: "flex", flexDirection: "column", gap: 20, alignItems: "center", justifyContent: "center" ,marginTop:"20px",fontSize:"30px" }}>
         {allPlayer?.map((el,i) => {
           return <Link key={i} href={`/player/${+el.number}`}>
          
