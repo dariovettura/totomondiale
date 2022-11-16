@@ -97,7 +97,7 @@ export default function Classifica() {
       <div style={{ width: "100vw", height: "100vh", display: "flex", flexDirection: "column", gap: 20, alignItems: "center", justifyContent: "center", marginTop: "20px", fontSize: "30px" }}>
         <span style={{ fontSize: "30px", fontWeight: "bold" }}>Classifica</span>
         <span style={{ fontSize: "15px", fontWeight: "bold", marginBottom: "40px" }}>Clicca sul nome per vedere la sua scedina</span>
-        {compareResults()?.map((el, i) => {
+        {allPlayer?.map((el, i) => {
           return <Link key={i} href={`/player/${+el.number}`}>
 
             {el.billing.first_name} = {JSON.parse(el?.customer_note)[0]?.totScore}
