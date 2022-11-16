@@ -23,9 +23,10 @@ export default function Classifica() {
   };
 
   const getFinalResult = () => {
-    if (getFinishedMatchs(ResultsArr).length > 0)
+    const finishedMatchs = getFinishedMatchs(ResultsArr);
+    if (finishedMatchs.length > 0)
       setResults(
-        getFinishedMatchs(ResultsArr).map((el) => {
+        finishedMatchs.map((el) => {
           if (el.stats.home_score - el.stats.away_score > 0) {
             return { ...el, risultatoFinale: "1" };
           }
@@ -60,37 +61,38 @@ export default function Classifica() {
     return filteredArray;
   };
 
-  const compareResults = () => {
-    var ourMatchs = getOurFinishedMatch();
-    var finalRes = ourMatchs.map((el: any) =>
-      el.filter((els: any) => {
-        return (
-          results.filter((anotherOne_el) => {
-            return (
-              anotherOne_el.risultatoFinale == els.result &&
-              anotherOne_el.match_id == els.match_id
-            );
-          }).length !== 0
-        );
-      })
-    );
-    console.log({ finalRes });
+  function comparePlayers(a: any, b: any) {
+    if(a.score > b.score) {
+      return -1;
+    }
+    if(a.score < b.score) {
+      return 1;
+    }
+    return 0;
+  }
 
-    return finalRes;
-  };
-
-  const getFinalResuls = () => {
-    var finalmente = getOurFinishedMatch().map((el) => {
-      return compareResults().map((els) => {
-        if (els[0]?.id == el[0]?.id) {
-          return { ...el, totScore: els.length };
-        } else {
-          return { ...el, totScore: 0 };
+  const getChart = () => {
+    let playersResults: any[] = [];
+    const playedMatches = getOurFinishedMatch();
+    const resultObject: any = {};
+    results.forEach((el) => {
+      resultObject[el.match_id] = el.risultatoFinale;
+    });
+    playedMatches.forEach((el) => {
+      let player = {
+        id: el[0].id,
+        name: el[0].name,
+        score: 0,
+      };
+      el.forEach((e: any) => {
+        if (e.result == resultObject[e.match_id]) {
+          player.score += 1;
         }
       });
+      playersResults.push(player);
+
     });
-    console.log({ finalmente });
-    return finalmente;
+    return playersResults.sort(comparePlayers);
   };
 
   const getClassifica = () => {
@@ -110,9 +112,9 @@ export default function Classifica() {
     getFinalResult();
   }, []);
 
-  React.useEffect(() => {
-    if (allPlayer.length > 0) getFinalResuls();
-  }, [allPlayer]);
+  // React.useEffect(() => {
+  //   if (allPlayer.length > 0) getFinalResuls();
+  // }, [allPlayer]);
 
   React.useEffect(() => {
     console.log({ results });
@@ -146,23 +148,13 @@ export default function Classifica() {
         >
           Clicca sul nome per vedere la sua schedina
         </span>
-        {getFinalResuls()?.map((el, i) => {
+        {getChart()?.map((el, i) => {
           return (
-            <Link key={i} href={`/player/${+el[0][0]?.id}`}>
-              {el[0][0].name} = {el[i].totScore}
+            <Link key={i} href={`/player/${+el?.id}`}>
+              {el.name || `Player${el.id}`} = {el.score}
             </Link>
           );
         })}
-
-        {/* <Link href={"/insertResult"} >
-          <Button >Inserisci la tua schedina</Button>
-        </Link>
-        <Link href={"/insertResult"}>
-          <Button >I tuoi risultati</Button>
-        </Link>
-        <Link href={"/insertResult"}>
-          <Button >Classifica</Button>
-        </Link> */}
       </div>
     </>
   );
