@@ -11,18 +11,50 @@ import axios from "axios";
 import { Button } from "antd";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
+import teams from "../../teams/teams";
 
 export default function Insert() {
   const afterSendDialog = React.useRef(null);
   const afterUpdateDialog = React.useRef(null);
 
-  let cal = Calendar.filter((el) => {
-    return el.away_team !== null;
+  const groups = ["A", "B", "C", "D", "E", "F", "G", "H"];
+  const quarters = [1, 2, 3, 4, 5, 6, 7, 8];
+  const semifinals = [1, 2, 3, 4];
+  const thirdPlace = [1, 2];
+  const finals = [1, 2];
+
+  let groupsCal = Calendar.filter((el) => {
+    return el.stage.name === "Group stage";
   });
+
+  let eightsCal = Calendar.filter((el) => {
+    return el.round.name === "1/8 - finals";
+  });
+  console.log("eightsCal", eightsCal);
+
+  let quartersCal = Calendar.filter((el) => {
+    return el.round.name === "Quarter-finals";
+  });
+  console.log("quartersCal", quartersCal);
+
+  let semisCal = Calendar.filter((el) => {
+    return el.round.name === "Semi-finals";
+  });
+  console.log("semisCal", semisCal);
+
+  let thirdPlaceCal = Calendar.filter((el) => {
+    return el.round.name === "Placement Match For 3rd";
+  });
+  console.log("thirdPlaceCal", thirdPlaceCal);
+
+  let finalCal = Calendar.filter((el) => {
+    return el.round.name === "Final";
+  });
+  console.log("finalCal", finalCal);
 
   const [myName, setMyName] = useState<string>("");
 
-  let my_results = cal.map((el) => {
+  let my_results = groupsCal.map((el) => {
     return {
       match_id: el.match_id,
       away_team: el.away_team,
@@ -208,7 +240,7 @@ export default function Insert() {
           justifyContent: "center",
         }}
       >
-        {cal.map((el, i) => {
+        {groupsCal.map((el, i) => {
           return (
             <div
               key={i}
@@ -247,11 +279,135 @@ export default function Insert() {
             </div>
           );
         })}
+        {groups.map((el, i) => (
+          <div key={i}>
+            <h3>Girone {el} passano (2pt per squadra)</h3>
+            <div>
+              <div>
+                <label htmlFor={`sq1-{el}`}>Girone {el} Squadra 1</label>
+                <select>
+                  {teams
+                    .filter((te, i) => te.group_name == el)
+                    .map((el, i) => {
+                      return (
+                        <option key={i} value={el.team_id}>
+                          {el.name}
+                        </option>
+                      );
+                    })}
+                </select>
+              </div>
+              <div>
+                <label htmlFor={`sq2-{el}`}>Girone {el} Squadra 2</label>
+                <select>
+                  {teams
+                    .filter((te, i) => te.group_name == el)
+                    .map((el, i) => {
+                      return (
+                        <option key={i} value={el.team_id}>
+                          {el.name}
+                        </option>
+                      );
+                    })}
+                </select>
+              </div>
+            </div>
+          </div>
+        ))}
+
+        <h3>Quarti passano (2pt per squadra)</h3>
+        {quarters.map((el, i) => (
+          <div key={i}>
+            <label htmlFor={`sq-{el}`}>Quarti Squadra {el}</label>
+            <select>
+              {teams.map((el, i) => {
+                return (
+                  <option key={i} value={el.team_id}>
+                    {el.name}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+        ))}
+
+        <h3>Semifinali passano (2pt per squadra)</h3>
+        {semifinals.map((el, i) => (
+          <div key={i}>
+            <label htmlFor={`sq-{el}`}>Semi Squadra {el}</label>
+            <select>
+              {teams.map((el, i) => {
+                return (
+                  <option key={i} value={el.team_id}>
+                    {el.name}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+        ))}
+
+        <h3>Finale 3zo posto (6pt per squadra)</h3>
+        {thirdPlace.map((el, i) => (
+          <div key={i}>
+            <label htmlFor={`sq-{el}`}>Finale 3/4 Squadra {el}</label>
+            <select>
+              {teams.map((el, i) => {
+                return (
+                  <option key={i} value={el.team_id}>
+                    {el.name}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+        ))}
+
+        <h3>Finale (8pt per squadra)</h3>
+        {finals.map((el, i) => (
+          <div key={i}>
+            <label htmlFor={`sq-{el}`}>Finale Squadra {el}</label>
+            <select>
+              {teams.map((el, i) => {
+                return (
+                  <option key={i} value={el.team_id}>
+                    {el.name}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+        ))}
+
+        <h3>Vincitrice (12 pt)</h3>
+        <label htmlFor={`winner`}>Vincitrice</label>
+        <select>
+          {teams.map((el, i) => {
+            return (
+              <option key={i} value={el.team_id}>
+                {el.name}
+              </option>
+            );
+          })}
+        </select>
+
+        <h3>Squadra con capocannoniere (5pt)</h3>
+        <label htmlFor={`goleador`}>Sq Capocannoniere</label>
+        <select>
+          {teams.map((el, i) => {
+            return (
+              <option key={i} value={el.team_id}>
+                {el.name}
+              </option>
+            );
+          })}
+        </select>
+
         <div className="dv-d-flex dv-ai-center dv-f-col mb-100 mt-40">
           <span>Inserisci il tuo nomecognome senza spazi</span>
           <TextField
             style={{ marginTop: "20px", marginBottom: "20px" }}
-            onChange={(e) => setMyName(e.target.value)}
+            onChange={(e) => setMyName(e.target.value.replace(" ", ""))}
             id="outlined-basic"
             label="nomecognome"
             variant="outlined"
