@@ -130,13 +130,13 @@ export default function Classifica() {
       <div
         style={{
           width: "100vw",
-          height: "100vh",
           display: "flex",
           flexDirection: "column",
-          gap: 20,
+          gap: "20px",
           alignItems: "center",
           justifyContent: "center",
           marginTop: "20px",
+          marginBottom: "40px",
           fontSize: "30px",
         }}
       >
@@ -144,7 +144,7 @@ export default function Classifica() {
         <span
           style={{ fontSize: "15px", fontWeight: "bold", marginBottom: "40px" }}
         >
-          Clicca sul nome per vedere la sua scedina
+          Clicca sul nome per vedere la sua schedina
         </span>
         {getFinalResuls()?.map((el, i) => {
           return (
