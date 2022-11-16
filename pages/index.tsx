@@ -16,13 +16,11 @@ export default function Home() {
     <>
      <div style={{width:"100vw",height:"100vh",display:"flex",flexDirection:"column",gap:20,alignItems:"center",justifyContent:"center"}}>
      <Link  href={"/insertResult"} >
-               <Button >Inserisci la tua schedina</Button>
+               <Button style={{marginBottom:"20px",marginTop:"20px"}}>Inserisci la tua schedina</Button>
             </Link>
-            <Link  href={"/insertResult"}>
-            <Button >I tuoi risultati</Button>
-            </Link>
-            <Link   href={"/insertResult"}>
-            <Button >Classifica</Button>
+           
+            <Link   href={"/classifica"}>
+            <Button style={{marginBottom:"20px",marginTop:"20px"}} >Classifica</Button>
             </Link>
      </div>
 
