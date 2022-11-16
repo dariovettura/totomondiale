@@ -1,4 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from "next";
 import { loginHandler } from "next-password-protect";
 
 export default loginHandler("secret", {

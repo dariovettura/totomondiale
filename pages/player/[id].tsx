@@ -1,85 +1,101 @@
+import { Divider } from "@mui/material";
+import axios from "axios";
 
-import { Divider } from '@mui/material'
-import axios from 'axios'
-
-import { GetStaticPaths, GetStaticPropsResult, NextPage } from 'next'
-import { imageOptimizer } from 'next/dist/server/image-optimizer'
-import Image from 'next/image'
-import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
-
+import { GetStaticPaths, GetStaticPropsResult, NextPage } from "next";
+import { imageOptimizer } from "next/dist/server/image-optimizer";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import React, { useEffect } from "react";
 
 interface Props {
-
-  posts?: any[],
-  infos?: any[]
-
+  posts?: any[];
+  infos?: any[];
 }
 
 const Player: NextPage<Props> = ({ posts, infos }) => {
-  const router = useRouter()
-  const { id } = router.query
+  const router = useRouter();
+  const { id } = router.query;
 
-
-   const [item,setItem] = React.useState<any[]>([])
-   const [name,setName] = React.useState<any>([])
-
-
+  const [item, setItem] = React.useState<any[]>([]);
+  const [name, setName] = React.useState<any>([]);
 
   async function navigate() {
-    router.push({
-      pathname: "/",
-
-    }, undefined, { scroll: false });
+    router.push(
+      {
+        pathname: "/",
+      },
+      undefined,
+      { scroll: false }
+    );
   }
 
   const getMyResults = () => {
-    return axios.post("/api/getMyResults", { data: id }).then(
-      res =>
-        {console.log(res)
-          setName(res.data.billing.first_name)
-        setItem(JSON.parse(res.data.customer_note))}
-    );}
-
+    return axios.post("/api/getMyResults", { data: id }).then((res) => {
+      console.log(res);
+      setName(res.data.billing.first_name);
+      setItem(JSON.parse(res.data.customer_note));
+    });
+  };
 
   React.useEffect(() => {
-   getMyResults()
-  }, [])
+    getMyResults();
+  }, []);
 
- 
+  return (
+    <>
+      <div className="root">
+        <div
+          style={{
+            marginTop: "60px",
+            marginBottom: "60px",
+            width: "100vw",
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            gap: 20,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <span style={{ fontSize: "30px", fontWeight: "bold" }}>{name}</span>
 
-  return<>
-  <div className="root">
-  <div style={{ marginTop: "60px", marginBottom: "60px", width: "100vw", height: "100%", display: "flex", flexDirection: "column", gap: 20, alignItems: "center", justifyContent: "center" }}>
-    <span style={{fontSize:"30px",fontWeight:"bold"}}>{name}</span>
-    
-{item.map(
-(el,i) =>
-  <div key={i} style={{ display: "flex", flexDirection: "column" }}>
- 
-  <div>
-    <img style={{ width: "30px", height: "30px" }} src={el?.home_team?.logo} alt="" /> {el?.home_team?.name} - {el?.away_team?.name} <img style={{ width: "30px", height: "30px" }} src={el?.away_team?.logo} alt="" /> 
-    <span style={{fontSize:"30px",fontWeight:"bold",marginLeft:"20px"}}>{el.result}</span>
-    
-    </div>
-
-</div>
-  )
-  
-  }
- </div>
- 
-  </div>
-  
- </> 
-}
+          {item.map((el, i) => (
+            <div key={i} style={{ display: "flex", flexDirection: "column" }}>
+              <div>
+                <img
+                  style={{ width: "30px", height: "30px" }}
+                  src={el?.home_team?.logo}
+                  alt=""
+                />{" "}
+                {el?.home_team?.name} - {el?.away_team?.name}{" "}
+                <img
+                  style={{ width: "30px", height: "30px" }}
+                  src={el?.away_team?.logo}
+                  alt=""
+                />
+                <span
+                  style={{
+                    fontSize: "30px",
+                    fontWeight: "bold",
+                    marginLeft: "20px",
+                  }}
+                >
+                  {el.result}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+};
 export const getStaticPaths: GetStaticPaths<{ id: string }> = async () => {
-
   return {
     paths: [], //indicates that no page needs be created at build time
-    fallback: 'blocking' //indicates the type of fallback
-  }
-}
+    fallback: "blocking", //indicates the type of fallback
+  };
+};
 
 export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
   // Call an external API endpoint to get posts.
@@ -93,16 +109,16 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
 
   //const result = await Axios.get(url);
   //const menu =  result.data
-  const infores = await fetch(infourl, { method: 'GET' });
+  const infores = await fetch(infourl, { method: "GET" });
   const res = await fetch(url, {
-    method: 'GET',
+    method: "GET",
 
     credentials: "same-origin", //include, same-origin
-    headers: { Accept: 'application/json', 'Content-Type': 'application/json', },
+    headers: { Accept: "application/json", "Content-Type": "application/json" },
   });
 
   const posts = await res.json();
-  const infos = await infores.json()
+  const infos = await infores.json();
 
   //  const res = await fetch('https://.../posts')
   // const posts = await res.json()
@@ -112,8 +128,7 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
   return {
     props: {
       posts,
-      infos
-
+      infos,
     },
     revalidate: 10,
   };
