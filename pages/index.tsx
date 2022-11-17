@@ -27,11 +27,19 @@ export default function Home() {
           </Button>
         </Link>
 
-        <Link href={"/classifica"}>
+        <Link href={"/lemiescommesse"}>
+          <Button
+            style={{ marginTop: "20px", marginBottom: "20px" }}
+          >
+            Le tue scommesse
+          </Button>
+        </Link>
+
+        {/* <Link href={"/classifica"}>
           <Button style={{ marginBottom: "20px", marginTop: "20px" }}>
             Classifica
           </Button>
-        </Link>
+        </Link> */}
       </div>
     </>
   );

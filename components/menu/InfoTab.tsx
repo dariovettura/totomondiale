@@ -28,22 +28,22 @@ const InfoTab: React.FC<Props> = ({ onclick }) => {
             Inserisci la tua schedina
           </Button>
         </Link>
-        <Link href={"/insertResult"}>
+        <Link href={"/lemiescommesse"}>
           <Button
             style={{ marginTop: "20px", marginBottom: "20px" }}
             onClick={onclick}
           >
-            I tuoi risultati
+            Le tue scommesse
           </Button>
         </Link>
-        <Link href={"/classifica"}>
+        {/* <Link href={"/classifica"}>
           <Button
             style={{ marginTop: "20px", marginBottom: "20px" }}
             onClick={onclick}
           >
             Classifica
           </Button>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

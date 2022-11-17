@@ -2,15 +2,15 @@ import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import "antd/dist/antd.css";
 import Snackbar from "@mui/material/Snackbar";
-
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 import Dialog from "@mui/material/Dialog";
 import TextField from "@mui/material/TextField";
 import Calendar from "../../calendar/calendar";
 import React, { useState } from "react";
 import axios from "axios";
 import { Button } from "antd";
-import Backdrop from "@mui/material/Backdrop";
-import CircularProgress from "@mui/material/CircularProgress";
+
 import teams from "../../teams/teams";
 
 export default function Insert() {
@@ -170,16 +170,6 @@ export default function Insert() {
           }
         })
       ));
-
-    return setMyResult((prev) =>
-      prev.map((el) => {
-        if (el.match_id == match) {
-          return { ...el, result: result };
-        } else {
-          return el;
-        }
-      })
-    );
   };
 
   const addPlayoffResult = (teamId: any, stage: any) => {
