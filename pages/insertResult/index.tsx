@@ -54,7 +54,7 @@ export default function Insert() {
 
   const [myName, setMyName] = useState<string>("");
 
-  let my_results = groupsCal.map((el) => {
+  let my_results: any = groupsCal.map((el) => {
     return {
       match_id: el.match_id,
       away_team: el.away_team,
@@ -125,12 +125,52 @@ export default function Insert() {
     // })}]`
   };
 
+
   React.useEffect(() => {
-    console.log({ myResult });
-  }, [myResult]);
+    if (localStorage.getItem('myRes')) {
+      const res: any = localStorage.getItem('myRes');
+      setMyResult(JSON.parse(res));
+    }
+    else { localStorage.setItem('myRes', JSON.stringify(myResult)); };
+
+    if (localStorage.getItem('myOffRes')) {
+      const res: any = localStorage.getItem('myOffRes');
+      setMyPlayoffResults(JSON.parse(res));
+    }
+    else { localStorage.setItem('myOffRes', JSON.stringify(myPlayOffResults)); };
+
+    
+  }, []);
+
+
 
   const onInputResult = (result: any, match: number) => {
     console.log("ONINPUTRESULT", result, match);
+    return setMyResult((prev) =>
+      prev.map((el) => {
+        if (el.match_id == match) {
+          return { ...el, result: result };
+        } else {
+          return el;
+        }
+      })
+    );
+  };
+
+  const onLocalSaveRes = (result: any, match: number) => {
+
+    var saved: any = localStorage.getItem('myRes')
+    return localStorage.setItem(
+      'myRes', JSON.stringify(
+        JSON.parse(saved).map((el: { match_id: number; }) => {
+          if (el.match_id == match) {
+            return { ...el, result: result };
+          } else {
+            return el;
+          }
+        })
+      ));
+
     return setMyResult((prev) =>
       prev.map((el) => {
         if (el.match_id == match) {
@@ -146,7 +186,10 @@ export default function Insert() {
     let currentPlayoffResults = { ...myPlayOffResults };
     currentPlayoffResults[stage] = +teamId;
     setMyPlayoffResults(currentPlayoffResults);
+    localStorage.setItem('myOffRes', JSON.stringify(currentPlayoffResults))
   };
+
+ 
 
   console.log("myPlayOffResults", myPlayOffResults);
 
@@ -224,7 +267,7 @@ export default function Insert() {
         autoHideDuration={6000}
         onClose={() => setError(false)}
         message="Errore schedina non inviata"
-        // action={action}
+      // action={action}
       />
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -280,11 +323,12 @@ export default function Insert() {
                 />{" "}
                 -
                 <select
-                  onChange={(e) => onInputResult(e.target.value, el.match_id)}
+                  value={myResult[i]?.result.toString()}
+                  onChange={(e) => { onInputResult(e.target.value, el.match_id); onLocalSaveRes(e.target.value, el.match_id) }}
                 >
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="x">x</option>
+                  <option  value="1">1</option>
+                  <option  value="2">2</option>
+                  <option  value="x">x</option>
                 </select>
               </div>
             </div>
@@ -296,7 +340,7 @@ export default function Insert() {
             <div>
               <div>
                 <label htmlFor={`sq1-{el}`}>Girone {el} Squadra 1</label>
-                <select onChange={(e) => addPlayoffResult(e.target.value, `girone${el}1`) }>
+                <select value={myPlayOffResults[`girone${el}1`]} onChange={(e) => addPlayoffResult(e.target.value, `girone${el}1`)}>
                   <option>scegli</option>
                   {teams
                     .filter((te, i) => te.group_name == el)
@@ -311,7 +355,7 @@ export default function Insert() {
               </div>
               <div>
                 <label htmlFor={`sq2-{el}`}>Girone {el} Squadra 2</label>
-                <select onChange={(e) => addPlayoffResult(e.target.value, `girone${el}2`)}>
+                <select value={myPlayOffResults[`girone${el}2`]} onChange={(e) => addPlayoffResult(e.target.value, `girone${el}2`)}>
                   <option>scegli</option>
                   {teams
                     .filter((te, i) => te.group_name == el)
@@ -332,7 +376,7 @@ export default function Insert() {
         {quarters.map((el, i) => (
           <div key={i}>
             <label htmlFor={`sq-{el}`}>Quarti Squadra {el}</label>
-            <select onChange={(e) => addPlayoffResult(e.target.value, `quarti${el}`)}>
+            <select value={myPlayOffResults[`quarti${el}`]} onChange={(e) => addPlayoffResult(e.target.value, `quarti${el}`)}>
               <option>scegli</option>
               {teams.map((el, i) => {
                 return (
@@ -349,7 +393,7 @@ export default function Insert() {
         {semifinals.map((el, i) => (
           <div key={i}>
             <label htmlFor={`sq-{el}`}>Semi Squadra {el}</label>
-            <select onChange={(e) => addPlayoffResult(e.target.value, `semi${el}`)}>
+            <select value={myPlayOffResults[`semi${el}`]} onChange={(e) => addPlayoffResult(e.target.value, `semi${el}`)}>
               <option>scegli</option>
               {teams.map((el, i) => {
                 return (
@@ -383,7 +427,7 @@ export default function Insert() {
         {finals.map((el, i) => (
           <div key={i}>
             <label htmlFor={`sq-{el}`}>Finale Squadra {el}</label>
-            <select onChange={(e) => addPlayoffResult(e.target.value, `finale${el}`)}>
+            <select  onChange={(e) => addPlayoffResult(e.target.value, `finale${el}`)}>
               <option>scegli</option>
               {teams.map((el, i) => {
                 return (
