@@ -42,7 +42,7 @@ export default function Classifica() {
 
   const getOurFinishedMatch = () => {
     var myMatch = allPlayer.map((el) =>
-      JSON.parse(el?.customer_note).map((e: any) => {
+      JSON.parse(el?.customer_note).myResult.map((e: any) => {
         return { ...e, id: el.number, name: el.billing.first_name };
       })
     );

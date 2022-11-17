@@ -118,7 +118,7 @@ export default function Insert() {
         total: "0.00",
       },
     ],
-    customer_note: JSON.stringify(myResult),
+    customer_note: JSON.stringify({myResult:myResult,myPlayOffResults:myPlayOffResults}),
 
     // `[${myResult.map(el => {
     //   return `{match_id:${el?.match_id},away_team:"${el.away_team?.name}",home_team:"${el.home_team?.name}",result:"${el.result}",name:"${myName}"}`

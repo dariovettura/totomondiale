@@ -33,7 +33,7 @@ const Player: NextPage<Props> = ({ posts, infos }) => {
     return axios.post("/api/getMyResults", { data: id }).then((res) => {
       console.log(res);
       setName(res.data.billing.first_name);
-      setItem(JSON.parse(res.data.customer_note));
+      setItem(JSON.parse(res.data.customer_note).myResult);
     });
   };
 
