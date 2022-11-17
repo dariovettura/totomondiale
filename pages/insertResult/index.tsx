@@ -410,7 +410,7 @@ export default function Insert() {
         {thirdPlace.map((el, i) => (
           <div key={i}>
             <label htmlFor={`sq-{el}`}>Finale 3/4 Squadra {el}</label>
-            <select onChange={(e) => addPlayoffResult(e.target.value, `terzo${el}`)}>
+            <select value={myPlayOffResults[`terzo${el}`]} onChange={(e) => addPlayoffResult(e.target.value, `terzo${el}`)}>
               <option>scegli</option>
               {teams.map((el, i) => {
                 return (
@@ -427,7 +427,7 @@ export default function Insert() {
         {finals.map((el, i) => (
           <div key={i}>
             <label htmlFor={`sq-{el}`}>Finale Squadra {el}</label>
-            <select  onChange={(e) => addPlayoffResult(e.target.value, `finale${el}`)}>
+            <select value={myPlayOffResults[`finale${el}`]}  onChange={(e) => addPlayoffResult(e.target.value, `finale${el}`)}>
               <option>scegli</option>
               {teams.map((el, i) => {
                 return (
@@ -442,7 +442,7 @@ export default function Insert() {
 
         <h3>Vincitrice (12 pt)</h3>
         <label htmlFor={`winner`}>Vincitrice</label>
-        <select onChange={(e) => addPlayoffResult(e.target.value, `vincitrice`)}>
+        <select value={myPlayOffResults[`vincitrice`]}  onChange={(e) => addPlayoffResult(e.target.value, `vincitrice`)}>
           <option>scegli</option>
           {teams.map((el, i) => {
             return (
@@ -455,7 +455,7 @@ export default function Insert() {
 
         <h3>Squadra con capocannoniere (5pt)</h3>
         <label htmlFor={`goleador`}>Sq Capocannoniere</label>
-        <select onChange={(e) => addPlayoffResult(e.target.value, `capocannoniere`)}>
+        <select value={myPlayOffResults[`capocannoniere`]} onChange={(e) => addPlayoffResult(e.target.value, `capocannoniere`)}>
           <option>scegli</option>
           {teams.map((el, i) => {
             return (
