@@ -288,7 +288,7 @@ export default function Insert() {
           justifyContent: "center",
         }}
       >
-        {groupsCal.map((el, i) => {
+        {/* {groupsCal.map((el, i) => {
           return (
             <div
               key={i}
@@ -325,7 +325,7 @@ export default function Insert() {
                   <option value="2">2</option>
                   <option value="x">x</option>
  label={}                 </Select> */}
-              </div>
+              {/* </div>
               <div className="dv-d-flex gap-10 dv-ai-center dv-jc-center">
                 <div className="radio-btn">
                   <input checked={myResult[i]?.result.toString() == "1"} value="1" type="radio" name={i.toString()}
@@ -346,7 +346,7 @@ export default function Insert() {
               </div>
             </div>
           );
-        })}
+        })} */} 
 
         <div className="dv-d-flex dv-ai-center dv-f-col mb-100 mt-40" style={{textAlign:"center"}}>
 
