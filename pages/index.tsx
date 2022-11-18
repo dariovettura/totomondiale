@@ -1,8 +1,5 @@
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
-import "antd/dist/antd.css";
-
-
 import React, { useState } from "react";
 import axios from "axios";
 import Link from "next/link";

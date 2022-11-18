@@ -473,7 +473,7 @@ export default function Insert() {
           >
             Invia schedina
           </Button>
-          <span style={{ marginTop: "20px", marginBottom: "20px" }}>
+          <span style={{ marginTop: "20px", marginBottom: "20px" ,textAlign:"center"}}>
             Hai già inviato la tua schedina e vuoi modificarla?
           </span>
           <Button

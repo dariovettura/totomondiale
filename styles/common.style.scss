@@ -668,21 +668,33 @@ html {
   width: 140px;
 }
 .bg-gradient {
-	position: fixed;
-	z-index: -1;
-	top:0;
-	left: 0;
-	height: 120vh;
-	width: 100vh;
- 
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  height: 120vh;
+  width: 100vh;
+
   background: linear-gradient(180deg, #fda855 0%, rgba(255, 255, 255, 1) 50%);
 }
-
-select{
-	padding: 10px;
-	border-radius: 10px;
-	min-width: 200px;
-	text-align: center;
+header {
+  position: fixed;
+  display: flex;
+  width: 100vw;
+  padding: 5px;
+  top: 0px;
+  height: 40px;
+}
+header svg {
+  height: 40px !important;
+  width: 40px !important;
+  margin-left: auto !important;
+}
+select {
+  padding: 10px;
+  border-radius: 10px;
+  min-width: 200px;
+  text-align: center;
 }
 .MuiButtonBase-root {
   font-family: "Roboto";
@@ -730,7 +742,7 @@ h1 {
 
 .radio-btn label {
   font-size: 25px;
-	font-weight: bolder;
+  font-weight: bolder;
   padding-left: 17px;
   cursor: pointer;
   z-index: 90;

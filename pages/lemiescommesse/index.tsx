@@ -47,19 +47,19 @@ const LeScommesse: NextPage<Props> = ({ posts, infos }) => {
   const getMyResults = () => {
     setLoader(true)
     return axios.post("/api/getMyResults", { data: codicePers })
-    .then((res) => {
-      console.log(res);
-      setLoader(false)
-      setName(res.data.billing.first_name);
-      setMyRes(JSON.parse(res.data.customer_note).myResult);
-      setMyOffRes(JSON.parse(res.data.customer_note).myPlayOffResults);
-    })
-    .catch(err=> {
-      setError(true);
-      setLoader(false)
-    }
-    )
-    ;
+      .then((res) => {
+        console.log(res);
+        setLoader(false)
+        setName(res.data.billing.first_name);
+        setMyRes(JSON.parse(res.data.customer_note).myResult);
+        setMyOffRes(JSON.parse(res.data.customer_note).myPlayOffResults);
+      })
+      .catch(err => {
+        setError(true);
+        setLoader(false)
+      }
+      )
+      ;
   };
 
   const getTeamName = (id: any) => {
@@ -136,7 +136,7 @@ const LeScommesse: NextPage<Props> = ({ posts, infos }) => {
                     style={{
                       fontSize: "30px",
                       fontWeight: "bold",
-                      marginLeft: "20px",
+
                     }}
                   >
                     {el.result}
@@ -144,110 +144,114 @@ const LeScommesse: NextPage<Props> = ({ posts, infos }) => {
                 </div>
               </div>
             ))}
-
-            {groups.map((el: any, i) => (
-              <div key={i}>
-                <h3>Girone {el} passano (2pt per squadra)</h3>
-                <div>
+            <div style={{ textAlign: "center" }}>
+              {groups.map((el: any, i) => (
+                <div key={i}>
+                  <h3>Girone {el} passano (2pt per squadra)</h3>
                   <div>
-                    <label htmlFor={`sq1-{el}`}>Girone {el} Squadra 1</label>
-                    <span
-                      style={{
-                        fontSize: "30px",
-                        fontWeight: "bold",
-                        marginLeft: "20px",
-                      }}>{getTeamName(myOffRes[`girone${el}1`])}</span>
+                    <div className="dv-d-flex dv-f-col dv-gap-10 mb-30">
+                      <label htmlFor={`sq1-{el}`}>Girone {el} Squadra 1</label>
+                      <span
+                        style={{
+                          fontSize: "30px",
+                          fontWeight: "bold",
+
+                        }}>{getTeamName(myOffRes[`girone${el}1`])}</span>
 
 
-                  </div>
-                  <div>
-                    <label htmlFor={`sq2-{el}`}>Girone {el} Squadra 2</label>
-                    <span
-                      style={{
-                        fontSize: "30px",
-                        fontWeight: "bold",
-                        marginLeft: "20px",
-                      }}>{getTeamName(myOffRes[`girone${el}2`])}</span>
+                    </div>
+                    <div className="dv-d-flex dv-f-col dv-gap-10 mb-30">
+                      <label htmlFor={`sq2-{el}`}>Girone {el} Squadra 2</label>
+                      <span
+                        style={{
+                          fontSize: "30px",
+                          fontWeight: "bold",
 
+                        }}>{getTeamName(myOffRes[`girone${el}2`])}</span>
+
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
 
-            <h3>Quarti passano (2pt per squadra)</h3>
-            {quarters.map((el, i) => (
-              <div key={i}>
-                <label htmlFor={`sq-{el}`}>Quarti Squadra {el}</label>
-                <span
-                  style={{
-                    fontSize: "30px",
-                    fontWeight: "bold",
-                    marginLeft: "20px",
-                  }}>{getTeamName(myOffRes[`quarti${el}`])}</span>
-              </div>
-            ))}
+              <h3>Quarti passano (2pt per squadra)</h3>
+              {quarters.map((el, i) => (
+                <div className="dv-d-flex dv-f-col dv-gap-10 mb-30" key={i}>
+                  <label htmlFor={`sq-{el}`}>Quarti Squadra {el}</label>
+                  <span
+                    style={{
+                      fontSize: "30px",
+                      fontWeight: "bold",
 
-            <h3>Semifinali passano (2pt per squadra)</h3>
-            {semifinals.map((el, i) => (
-              <div key={i}>
-                <label htmlFor={`sq-{el}`}>Semi Squadra {el}</label>
-                <span
-                  style={{
-                    fontSize: "30px",
-                    fontWeight: "bold",
-                    marginLeft: "20px",
-                  }}>{getTeamName(myOffRes[`semi${el}`])}</span>
+                    }}>{getTeamName(myOffRes[`quarti${el}`])}</span>
+                </div>
+              ))}
 
-              </div>
-            ))}
+              <h3>Semifinali passano (2pt per squadra)</h3>
+              {semifinals.map((el, i) => (
+                <div className="dv-d-flex dv-f-col dv-gap-10 mb-30" key={i}>
+                  <label htmlFor={`sq-{el}`}>Semi Squadra {el}</label>
+                  <span
+                    style={{
+                      fontSize: "30px",
+                      fontWeight: "bold",
 
-            <h3>Finale 3zo posto (6pt per squadra)</h3>
-            {thirdPlace.map((el, i) => (
-              <div key={i}>
-                <label htmlFor={`sq-{el}`}>Finale 3/4 Squadra {el}</label>
-                <span
-                  style={{
-                    fontSize: "30px",
-                    fontWeight: "bold",
-                    marginLeft: "20px",
-                  }}>{getTeamName(myOffRes[`terzo${el}`])}</span>
-              </div>
-            ))}
+                    }}>{getTeamName(myOffRes[`semi${el}`])}</span>
 
-            <h3>Finale (8pt per squadra)</h3>
-            {finals.map((el, i) => (
-              <div key={i}>
-                <label htmlFor={`sq-{el}`}>Finale Squadra {el}</label>
-                <span
-                  style={{
-                    fontSize: "30px",
-                    fontWeight: "bold",
-                    marginLeft: "20px",
-                  }}>{getTeamName(myOffRes[`finale${el}`])}</span>
-              </div>
-            ))}
+                </div>
+              ))}
 
-            <h3>Vincitrice (12 pt)</h3>
-            <label htmlFor={`winner`}>Vincitrice</label>
-            <span
-              style={{
-                fontSize: "30px",
-                fontWeight: "bold",
-                marginLeft: "20px",
-              }}>{getTeamName(myOffRes[`vincitrice`])}</span>
+              <h3>Finale 3zo posto (6pt per squadra)</h3>
+              {thirdPlace.map((el, i) => (
+                <div className="dv-d-flex dv-f-col dv-gap-10 mb-30" key={i}>
+                  <label htmlFor={`sq-{el}`}>Finale 3/4 Squadra {el}</label>
+                  <span
+                    style={{
+                      fontSize: "30px",
+                      fontWeight: "bold",
+
+                    }}>{getTeamName(myOffRes[`terzo${el}`])}</span>
+                </div>
+              ))}
+
+              <h3>Finale (8pt per squadra)</h3>
+              {finals.map((el, i) => (
+                <div className="dv-d-flex dv-f-col dv-gap-10 mb-30" key={i}>
+                  <label htmlFor={`sq-{el}`}>Finale Squadra {el}</label>
+                  <span
+                    style={{
+                      fontSize: "30px",
+                      fontWeight: "bold",
+
+                    }}>{getTeamName(myOffRes[`finale${el}`])}</span>
+                </div>
+              ))}
+
+              <h3>Vincitrice (12 pt)</h3>
+              <label htmlFor={`winner`}>Vincitrice</label>
+              <span
+                style={{
+                  fontSize: "30px",
+                  fontWeight: "bold",
+
+                }}>{getTeamName(myOffRes[`vincitrice`])}</span>
 
 
-            <h3>Squadra con capocannoniere (5pt)</h3>
-            <label htmlFor={`goleador`}>Sq Capocannoniere</label>
-            <span
-              style={{
-                fontSize: "30px",
-                fontWeight: "bold",
-                marginLeft: "20px",
-              }}>{getTeamName(myOffRes[`capocannoniere`])}</span>
+              <h3>Squadra con capocannoniere (5pt)</h3>
+              <label htmlFor={`goleador`}>Sq Capocannoniere</label>
+              <span
+                style={{
+                  fontSize: "30px",
+                  fontWeight: "bold",
+
+                }}>{getTeamName(myOffRes[`capocannoniere`])}</span>
+            </div>
           </>}
+
         </div>
+
       </div>
+
     </>
   );
 };

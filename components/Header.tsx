@@ -7,6 +7,7 @@ const Header = () => {
   
   return (
     <header id="header " >
+      <h1>TOTOMONDIALE</h1>
       <SwipableMenu />
     </header>
   );
