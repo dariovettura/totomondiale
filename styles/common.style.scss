@@ -1,135 +1,132 @@
-@import './variables';
+@import "./variables";
 
 @mixin generate-responsive() {
-	// Create a list of sizes and widths
-	$sizes: (
-		sm: '570px',
-		md: '800px',
-		lg: '1200px'
-	);
+  // Create a list of sizes and widths
+  $sizes: (
+    sm: "570px",
+    md: "800px",
+    lg: "1200px",
+  );
 
-	// Base style, without a suffix
-	@content;
+  // Base style, without a suffix
+  @content;
 
-	// Responsive styles
-	// Loop over each size
-	@each $suffix, $width in $sizes {
-		@media (max-width: $width) {
-			&-#{$suffix} {
-				@content;
-			}
-		}
-	}
+  // Responsive styles
+  // Loop over each size
+  @each $suffix, $width in $sizes {
+    @media (max-width: $width) {
+      &-#{$suffix} {
+        @content;
+      }
+    }
+  }
 }
 
 $sides: (top, bottom, left, right);
 
 @for $i from 0 through 40 {
-	@each $side in $sides {
-		.m#{str-slice($side, 0, 1)}-#{$i * 5} {
-			@include generate-responsive() {
-				margin-#{$side}: #{$i * 5}px !important;
-			}
-		}
-		.p#{str-slice($side, 0, 1)}-#{$i * 5} {
-			@include generate-responsive() {
-				padding-#{$side}: #{$i * 5}px !important;
-			}
-		}
-	}
+  @each $side in $sides {
+    .m#{str-slice($side, 0, 1)}-#{$i * 5} {
+      @include generate-responsive() {
+        margin-#{$side}: #{$i * 5}px !important;
+      }
+    }
+    .p#{str-slice($side, 0, 1)}-#{$i * 5} {
+      @include generate-responsive() {
+        padding-#{$side}: #{$i * 5}px !important;
+      }
+    }
+  }
 
-	.m-#{$i * 5} {
-		@include generate-responsive() {
-			margin: #{$i * 5}px !important;
-		}
-	}
+  .m-#{$i * 5} {
+    @include generate-responsive() {
+      margin: #{$i * 5}px !important;
+    }
+  }
 
-	.negative-m-#{$i * 5} {
-		@include generate-responsive() {
-			margin: -#{$i * 5}px !important;
-		}
-	}
+  .negative-m-#{$i * 5} {
+    @include generate-responsive() {
+      margin: -#{$i * 5}px !important;
+    }
+  }
 
-	.my-#{$i * 5} {
-		@include generate-responsive() {
-			margin-top: #{$i * 5}px !important;
-			margin-bottom: #{$i * 5}px !important;
-		}
-	}
+  .my-#{$i * 5} {
+    @include generate-responsive() {
+      margin-top: #{$i * 5}px !important;
+      margin-bottom: #{$i * 5}px !important;
+    }
+  }
 
-	.negative-my-#{$i * 5} {
-		@include generate-responsive() {
-			margin-top: -#{$i * 5}px !important;
-			margin-bottom: -#{$i * 5}px !important;
-		}
-	}
+  .negative-my-#{$i * 5} {
+    @include generate-responsive() {
+      margin-top: -#{$i * 5}px !important;
+      margin-bottom: -#{$i * 5}px !important;
+    }
+  }
 
-	.mx-#{$i * 5} {
-		@include generate-responsive() {
-			margin-left: #{$i * 5}px !important;
-			margin-right: #{$i * 5}px !important;
-		}
-	}
+  .mx-#{$i * 5} {
+    @include generate-responsive() {
+      margin-left: #{$i * 5}px !important;
+      margin-right: #{$i * 5}px !important;
+    }
+  }
 
-	.negative-mx-#{$i * 5} {
-		@include generate-responsive() {
-			margin-left: -#{$i * 5}px !important;
-			margin-right: -#{$i * 5}px !important;
-		}
-	}
+  .negative-mx-#{$i * 5} {
+    @include generate-responsive() {
+      margin-left: -#{$i * 5}px !important;
+      margin-right: -#{$i * 5}px !important;
+    }
+  }
 
-	.p-#{$i * 5} {
-		@include generate-responsive() {
-			padding: #{$i * 5}px !important;
-		}
-	}
+  .p-#{$i * 5} {
+    @include generate-responsive() {
+      padding: #{$i * 5}px !important;
+    }
+  }
 
-	.py-#{$i * 5} {
-		@include generate-responsive() {
-			padding-top: #{$i * 5}px !important;
-			padding-bottom: #{$i * 5}px !important;
-		}
-	}
+  .py-#{$i * 5} {
+    @include generate-responsive() {
+      padding-top: #{$i * 5}px !important;
+      padding-bottom: #{$i * 5}px !important;
+    }
+  }
 
-	.px-#{$i * 5} {
-		@include generate-responsive() {
-			padding-left: #{$i * 5}px !important;
-			padding-right: #{$i * 5}px !important;
-		}
-	}
+  .px-#{$i * 5} {
+    @include generate-responsive() {
+      padding-left: #{$i * 5}px !important;
+      padding-right: #{$i * 5}px !important;
+    }
+  }
 
-	@each $color, $value in $variants {
-		.dv-color-#{$color} {
-			@include generate-responsive() {
-				color: $value;
-			}
-		}
-		.dv-bg-#{$color} {
-			@include generate-responsive() {
-				background-color: $value;
-			}
-		}
-	}
+  @each $color, $value in $variants {
+    .dv-color-#{$color} {
+      @include generate-responsive() {
+        color: $value;
+      }
+    }
+    .dv-bg-#{$color} {
+      @include generate-responsive() {
+        background-color: $value;
+      }
+    }
+  }
 
+  .fs-#{$i + 5} {
+    @include generate-responsive() {
+      font-size: #{$i + 5}px;
+    }
+  }
+  .imp-fs-#{$i + 5} {
+    @include generate-responsive() {
+      font-size: #{$i + 5}px !important;
+    }
+  }
 
-
-	.fs-#{$i + 5} {
-		@include generate-responsive() {
-			font-size: #{$i + 5}px;
-		}
-	}
-	.imp-fs-#{$i + 5} {
-		@include generate-responsive() {
-			font-size: #{$i + 5}px !important;
-		}
-	}
-
-
-	.dv-gap-#{$i * 5} {
-		@include generate-responsive() {
-			gap: #{$i * 5}px !important;
-		}
-	}
+  .dv-gap-#{$i * 5} {
+    @include generate-responsive() {
+      gap: #{$i * 5}px !important;
+    }
+  }
 }
 
 // @for $i from 1 through 100 {
@@ -145,248 +142,243 @@ $sides: (top, bottom, left, right);
 // }
 
 @for $i from 1 through 200 {
-	.dv-w-#{$i * 5} {
-		@include generate-responsive() {
-			width: #{$i * 5}px !important;
-		}
-	}
-	.dv-h-#{$i * 5} {
-		@include generate-responsive() {
-			height: #{$i * 5}px !important;
-		}
-	}
+  .dv-w-#{$i * 5} {
+    @include generate-responsive() {
+      width: #{$i * 5}px !important;
+    }
+  }
+  .dv-h-#{$i * 5} {
+    @include generate-responsive() {
+      height: #{$i * 5}px !important;
+    }
+  }
 
-	.dv-min-w-#{$i * 5} {
-		@include generate-responsive() {
-			min-width: #{$i * 5}px !important;
-		}
-	}
-	.dv-min-h-#{$i * 5} {
-		@include generate-responsive() {
-			min-height: #{$i * 5}px !important;
-		}
-	}
+  .dv-min-w-#{$i * 5} {
+    @include generate-responsive() {
+      min-width: #{$i * 5}px !important;
+    }
+  }
+  .dv-min-h-#{$i * 5} {
+    @include generate-responsive() {
+      min-height: #{$i * 5}px !important;
+    }
+  }
 
-	.dv-min-vw-#{$i * 5} {
-		@include generate-responsive() {
-			min-width: #{$i * 5}vw !important;
-		}
-	}
-	.dv-min-vh-#{$i * 5} {
-		@include generate-responsive() {
-			min-height: #{$i * 5}vh !important;
-		}
-	}
+  .dv-min-vw-#{$i * 5} {
+    @include generate-responsive() {
+      min-width: #{$i * 5}vw !important;
+    }
+  }
+  .dv-min-vh-#{$i * 5} {
+    @include generate-responsive() {
+      min-height: #{$i * 5}vh !important;
+    }
+  }
 
-	.dv-max-w-#{$i * 5} {
-		@include generate-responsive() {
-			max-width: #{$i * 5}px !important;
-		}
-	}
-	.dv-max-h-#{$i * 5} {
-		@include generate-responsive() {
-			max-height: #{$i * 5}px !important;
-		}
-	}
+  .dv-max-w-#{$i * 5} {
+    @include generate-responsive() {
+      max-width: #{$i * 5}px !important;
+    }
+  }
+  .dv-max-h-#{$i * 5} {
+    @include generate-responsive() {
+      max-height: #{$i * 5}px !important;
+    }
+  }
 }
 
 @for $i from 1 through 7 {
-	.fw-#{$i*100} {
-		@include generate-responsive() {
-			font-weight: #{$i * 100};
-		}
-	}
+  .fw-#{$i*100} {
+    @include generate-responsive() {
+      font-weight: #{$i * 100};
+    }
+  }
 }
 
 @for $i from 1 through 12 {
-	.dim-#{$i} {
-		@include generate-responsive() {
-			max-width: calc((100% / 12 * #{$i}) - (20px / 12 * #{$i})) !important;
+  .dim-#{$i} {
+    @include generate-responsive() {
+      max-width: calc((100% / 12 * #{$i}) - (20px / 12 * #{$i})) !important;
 
-			flex-grow: 0 !important;
-			flex-shrink: 1 !important;
-			flex-basis: calc(100% / 12 * #{$i}) !important;
-		}
-	}
+      flex-grow: 0 !important;
+      flex-shrink: 1 !important;
+      flex-basis: calc(100% / 12 * #{$i}) !important;
+    }
+  }
 }
 
-.dv-ml-auto{
+.dv-ml-auto {
   @include generate-responsive() {
-		margin-left: auto;
-	}
+    margin-left: auto;
+  }
 }
-.dv-mr-auto{
+.dv-mr-auto {
   @include generate-responsive() {
-		margin-right:  auto;
-	}
+    margin-right: auto;
+  }
 }
 
 .dv-d-flex {
-	@include generate-responsive() {
-		display: flex;
-		gap: 20px;
-	}
+  @include generate-responsive() {
+    display: flex;
+    gap: 20px;
+  }
 }
 .dv-f-row {
-	@include generate-responsive() {
-		flex-direction: row;
-	}
+  @include generate-responsive() {
+    flex-direction: row;
+  }
 }
 .dv-f-col {
-	@include generate-responsive() {
-		flex-direction: column;
-	}
+  @include generate-responsive() {
+    flex-direction: column;
+  }
 }
 .dv-w-wrap {
-	@include generate-responsive() {
-		flex-wrap: wrap;
-	}
+  @include generate-responsive() {
+    flex-wrap: wrap;
+  }
 }
 .dv-w-nowrap {
-	@include generate-responsive() {
-		flex-wrap: nowrap;
-	}
+  @include generate-responsive() {
+    flex-wrap: nowrap;
+  }
 }
 .dv-jc-spb {
-	@include generate-responsive() {
-		justify-content: space-between;
-	}
+  @include generate-responsive() {
+    justify-content: space-between;
+  }
 }
 .dv-jc-spa {
-	@include generate-responsive() {
-		justify-content: space-around;
-	}
+  @include generate-responsive() {
+    justify-content: space-around;
+  }
 }
 .dv-jc-end {
-	@include generate-responsive() {
-		justify-content: flex-end;
-	}
+  @include generate-responsive() {
+    justify-content: flex-end;
+  }
 }
 .dv-jc-center {
-	@include generate-responsive() {
-		justify-content: center;
-	}
+  @include generate-responsive() {
+    justify-content: center;
+  }
 }
 .dv-ai-start {
-	@include generate-responsive() {
-		align-items: flex-start;
-	}
+  @include generate-responsive() {
+    align-items: flex-start;
+  }
 }
 .dv-ai-center {
-	@include generate-responsive() {
-		align-items: center;
-	}
+  @include generate-responsive() {
+    align-items: center;
+  }
 }
 .dv-ai-end {
-	@include generate-responsive() {
-		align-items: flex-end;
-	}
+  @include generate-responsive() {
+    align-items: flex-end;
+  }
 }
 .dv-ai-stretch {
-	@include generate-responsive() {
-		align-items: stretch;
-	}
+  @include generate-responsive() {
+    align-items: stretch;
+  }
 }
 .dv-flex-grow {
-	@include generate-responsive() {
-		flex: 1 0 auto;
-	}
+  @include generate-responsive() {
+    flex: 1 0 auto;
+  }
 }
 .dv-flex-shrink {
-	@include generate-responsive() {
-		flex: 0 1 auto;
-	}
+  @include generate-responsive() {
+    flex: 0 1 auto;
+  }
 }
 .dv-flex-grow-shrink {
-	@include generate-responsive() {
-		flex: 1 1 auto;
-	}
+  @include generate-responsive() {
+    flex: 1 1 auto;
+  }
 }
 .dv-flex-no-grow-shrink {
-	@include generate-responsive() {
-		flex: 0 0 auto;
-	}
+  @include generate-responsive() {
+    flex: 0 0 auto;
+  }
 }
 
 .dv-w-auto {
-	@include generate-responsive() {
-		width: auto;
-	}
+  @include generate-responsive() {
+    width: auto;
+  }
 }
 .dv-h-auto {
-	@include generate-responsive() {
-		height: auto;
-	}
+  @include generate-responsive() {
+    height: auto;
+  }
 }
 
 .dv-w-full {
-	@include generate-responsive() {
-		width: 100%;
-	}
+  @include generate-responsive() {
+    width: 100%;
+  }
 }
 .dv-h-full {
-	@include generate-responsive() {
-		height: 100%;
-	}
+  @include generate-responsive() {
+    height: 100%;
+  }
 }
-.dv-pointer{
-  cursor:pointer
+.dv-pointer {
+  cursor: pointer;
 }
 .dv-btn {
-	background-image: linear-gradient(#47d5dc, #0b87d0);
-	width: 100%;
-	min-width: 150px;
-	border-radius: 10% 10% 10% 10%;
-	font-family: 'Krungthep';
-	font-weight: 'bolder';
-	font-size: 20;
+  background-image: linear-gradient(#47d5dc, #0b87d0);
+  width: 100%;
+  min-width: 150px;
+  border-radius: 10% 10% 10% 10%;
+  font-family: "Krungthep";
+  font-weight: "bolder";
+  font-size: 20;
 }
 
 .dv-container {
-	@include generate-responsive() {
-		display: flex;
-		flex-direction: column;
-		align-items: stretch;
-		gap: 20px;
-	}
+  @include generate-responsive() {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+  }
 }
 .dv-row {
-	@include generate-responsive() {
-		display: flex;
-		align-items: stretch;
-		flex-wrap: wrap;
-		gap: 20px;
-	}
+  @include generate-responsive() {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
 }
 .dv-col {
-	@include generate-responsive() {
-		// display: block;
-		flex: 1 1 auto;
-		max-width: 100%;
-		box-sizing: border-box;
-	}
+  @include generate-responsive() {
+    // display: block;
+    flex: 1 1 auto;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
 }
 
 .purple_bg_gradient-card {
-	@include generate-responsive() {
-		background-image: $purple_bg_gradient;
-		border: 4px solid #ff6ad5;
-		border-radius: 30px;
-	}
+  @include generate-responsive() {
+    background-image: $purple_bg_gradient;
+    border: 4px solid #ff6ad5;
+    border-radius: 30px;
+  }
 }
 
 .purple_blue-card {
-	@include generate-responsive() {
-		background-color: $rc_purple;
-		border: 4px solid $rc_light_blue;
-		border-radius: 30px;
-	}
+  @include generate-responsive() {
+    background-color: $rc_purple;
+    border: 4px solid $rc_light_blue;
+    border-radius: 30px;
+  }
 }
-
-
-
-
-
 
 html,
 body {
@@ -399,8 +391,6 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-
-
 * {
   box-sizing: border-box;
   font-family: ".SFNSText", "SFProText-Regular", "SFUIText-Regular", ".SFUIText",
@@ -412,8 +402,6 @@ body {
   padding: 5px;
   justify-content: center;
 }
-
-
 
 // HEADER// HEADER// HEADER// HEADER// HEADER// HEADER// HEADER// HEADER// HEADER
 // HEADER// HEADER// HEADER// HEADER// HEADER// HEADER// HEADER// HEADER// HEADER
@@ -439,7 +427,6 @@ body {
 .header .menu {
   margin-left: auto;
 }
-
 
 @keyframes flicker {
   0%,
@@ -672,13 +659,69 @@ html {
   justify-content: center;
   z-index: -1;
 }
-.video_loader{
-  top:0;
+.video_loader {
+  top: 0;
   z-index: 1;
 }
 .loader svg {
   height: 140px;
   width: 140px;
+}
+body {
+  font-family: "Roboto";
+  background: linear-gradient(180deg, #fda855 0%, rgba(255, 255, 255, 1) 50%);
+}
+.MuiButtonBase-root {
+  font-family: "Roboto";
+  background:
+	//  rgb(251, 204, 38)
+    #0180ab !important;
+  color: #fff !important;
+}
+h1 {
+  font-family: "Roboto";
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  font-weight: 900 !important;
+  color: #fda855 !important;
+}
+
+.radio-btn {
+  border-radius: 4px;
+  border: 1px solid #0180ab;
+  margin: 0 5px 0 0;
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+
+.radio-btn label,
+.radio-btn input {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.radio-btn input[type="radio"] {
+  opacity: 0.011;
+  z-index: 100;
+}
+
+.radio-btn input[type="radio"]:checked + label {
+  background: #0180ab;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.radio-btn label {
+  font-size: 25px;
+	font-weight: bolder;
+  padding-left: 17px;
+  cursor: pointer;
+  z-index: 90;
+  line-height: 1.8em;
 }
 
 // MEDIA QUERY// MEDIA QUERY// MEDIA QUERY// MEDIA QUERY// MEDIA QUERY// MEDIA QUERY
@@ -687,7 +730,9 @@ html {
 // MEDIA QUERY// MEDIA QUERY// MEDIA QUERY// MEDIA QUERY// MEDIA QUERY// MEDIA QUERY
 
 @media only screen and (min-width: 1200px) {
-  .logo-2{  animation: flicker 1.5s infinite alternate;}
+  .logo-2 {
+    animation: flicker 1.5s infinite alternate;
+  }
   .player-wrapper {
     position: relative;
     padding-top: 50%; /* Player ratio: 100 / (1280 / 720) */

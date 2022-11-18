@@ -1,5 +1,5 @@
 import { Avatar } from "@mui/material";
-import { Button } from "antd";
+import Button from '@mui/material/Button';
 import Image from "next/image";
 import Link from "next/link";
 
