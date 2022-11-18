@@ -348,7 +348,7 @@ export default function Insert() {
           );
         })}
 
-        {/* <div className="dv-d-flex dv-ai-center dv-f-col mb-100 mt-40" style={{textAlign:"center"}}>
+        <div className="dv-d-flex dv-ai-center dv-f-col mb-100 mt-40" style={{textAlign:"center"}}>
 
         {groups.map((el, i) => (
           <div key={i}>
@@ -486,7 +486,7 @@ export default function Insert() {
             })}
           </Select>
         </FormControl>
-        </div> */}
+        </div>
 
         <div className="dv-d-flex dv-ai-center dv-f-col mb-100 mt-40">
           <span>Inserisci il tuo nomecognome senza spazi</span>
