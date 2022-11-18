@@ -667,8 +667,14 @@ html {
   height: 140px;
   width: 140px;
 }
-body {
-  font-family: "Roboto";
+.bg-gradient {
+	position: fixed;
+	z-index: -1;
+	top:0;
+	left: 0;
+	height: 120vh;
+	width: 100vh;
+ 
   background: linear-gradient(180deg, #fda855 0%, rgba(255, 255, 255, 1) 50%);
 }
 .MuiButtonBase-root {

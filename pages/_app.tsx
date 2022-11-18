@@ -13,6 +13,7 @@ function App({ Component, pageProps }: AppProps) {
  
   return (
     <main >
+      <div className="bg-gradient"></div>
         <style jsx global>{`
         html {
           font-family: ${roboto.style.fontFamily};
