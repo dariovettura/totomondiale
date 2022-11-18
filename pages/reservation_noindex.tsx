@@ -1,16 +1,16 @@
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
 import Calendar from "../calendar/calendar";
 import React, { useState } from "react";
 import { addDays, eachDayOfInterval, isWeekend } from "date-fns";
 import { DateRange } from "react-date-range";
 import moment from "moment";
-import { Select } from "antd";
+// import { Select } from "antd";
 import axios from "axios";
 
 export default function Home() {
-  const { Option } = Select;
+  // const { Option } = Select;
   const currentRange = React.useRef(null);
   const [allDate, setAllDate] = useState<any>([
     {
@@ -117,7 +117,7 @@ export default function Home() {
         direction="vertical"
         scroll={{ enabled: true }}
       />
-      <Select
+      {/* <Select
         mode="multiple"
         allowClear
         style={{ width: "100%" }}
@@ -160,6 +160,6 @@ export default function Home() {
           </Option>
         ))}
       </Select>
-    </div>
+   */} </div> 
   );
 }
