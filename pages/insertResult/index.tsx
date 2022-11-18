@@ -31,30 +31,7 @@ export default function Insert() {
     return el.stage.name === "Group stage";
   });
 
-  let eightsCal = Calendar.filter((el) => {
-    return el.round.name === "1/8 - finals";
-  });
-  console.log("eightsCal", eightsCal);
 
-  let quartersCal = Calendar.filter((el) => {
-    return el.round.name === "Quarter-finals";
-  });
-  console.log("quartersCal", quartersCal);
-
-  let semisCal = Calendar.filter((el) => {
-    return el.round.name === "Semi-finals";
-  });
-  console.log("semisCal", semisCal);
-
-  let thirdPlaceCal = Calendar.filter((el) => {
-    return el.round.name === "Placement Match For 3rd";
-  });
-  console.log("thirdPlaceCal", thirdPlaceCal);
-
-  let finalCal = Calendar.filter((el) => {
-    return el.round.name === "Final";
-  });
-  console.log("finalCal", finalCal);
 
   const [myName, setMyName] = useState<string>("");
 
@@ -257,7 +234,7 @@ export default function Insert() {
 
   return (
     <>
-      {/* <Snackbar
+      <Snackbar
         open={error}
         autoHideDuration={6000}
         onClose={() => setError(false)}
@@ -270,12 +247,8 @@ export default function Insert() {
         onClick={() => setLoader(false)}
       >
         <CircularProgress color="inherit" />
-      </Backdrop> */}
-      {/* <span onClick={() => inviaResults()}>invia </span>
-
-      <span onClick={() => getMyResults()}>getMyResult </span>
-
-      <span onClick={() => updateMyResults()}>updateMyResult </span> */}
+      </Backdrop>
+     
       <div
         style={{
           marginTop: "60px",
