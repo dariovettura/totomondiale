@@ -357,19 +357,18 @@ export default function Insert() {
           
               
 
-                <InputLabel id={`sq1-${el}`} >Girone {el} Squadra 1</InputLabel>
-                <Select labelId={`sq1-${el}`} label={`Girone ${el} Squadra 1`} value={myPlayOffResults[`girone${el}1`]} onChange={(e) => addPlayoffResult(e.target.value, `girone${el}1`)}>
+            <select value={myPlayOffResults[`girone${el}1`]} onChange={(e) => addPlayoffResult(e.target.value, `girone${el}1`)}>
+                  <option>scegli</option>
                   {teams
                     .filter((te, i) => te.group_name == el)
                     .map((el, i) => {
                       return (
-                        <MenuItem key={i} value={el.team_id}>
+                        <option key={i} value={el.team_id}>
                           {el.name}
-                        </MenuItem>
+                        </option>
                       );
                     })}
-                </Select>
-                
+                </select>
                 
                 <InputLabel id={`sq2-${el}`} >Girone {el} Squadra 2</InputLabel>
                 <Select labelId={`sq2-${el}`} label={`Girone ${el} Squadra 2`} value={myPlayOffResults[`girone${el}2`]} onChange={(e) => addPlayoffResult(e.target.value, `girone${el}2`)}>
