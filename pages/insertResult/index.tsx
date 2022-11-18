@@ -491,6 +491,7 @@ export default function Insert() {
       >
         <div
           style={{
+            position:"relative",
             height: "75vh",
             display: "flex",
             flexDirection: "column",
@@ -500,6 +501,7 @@ export default function Insert() {
             justifyContent: "center",
           }}
         >
+          <span  onClick={() => setOpenDialogSend(false)} style={{position:"absolute",fontSize:"30px",top:"10px",right:"10px",fontWeight:"900"}}>X</span>
           <span>Schedina inviata</span>
           <span>Questa è la tua password</span>
           <span style={{ fontSize: "40px", fontWeight: "bold" }}>
@@ -527,6 +529,7 @@ export default function Insert() {
             justifyContent: "center",
           }}
         >
+           <span   onClick={() => setOpenDialogup(false)} style={{position:"absolute",fontSize:"30px",top:"10px",right:"10px",fontWeight:"900"}}>X</span>
           <span style={{ marginTop: "20px", marginBottom: "20px" }}>
             Inserisci la tua password
           </span>
