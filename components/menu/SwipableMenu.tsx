@@ -22,7 +22,7 @@ const SwipableMenu: React.FC<Props> = ({ post }) => {
 
 	return (
 		<>
-		 <MenuRoundedIcon onClick={() => setOpen(true)}/>
+		 <MenuRoundedIcon  onClick={() => setOpen(true)}/>
 			<SwipeableDrawer
 				className="menu-swipe"
 				anchor="left"

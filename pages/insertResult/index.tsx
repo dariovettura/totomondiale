@@ -333,14 +333,14 @@ export default function Insert() {
                   <label >1</label>
                 </div>
                 <div className="radio-btn">
-                  <input value="2" type="radio" name={i.toString()}
-                    onChange={(e) => { onInputResult(e.target.value, el.match_id); onLocalSaveRes(e.target.value, el.match_id) }} />
-                  <label >2</label>
-                </div>
-                <div className="radio-btn">
                   <input value="x" type="radio" name={i.toString()}
                     onChange={(e) => { onInputResult(e.target.value, el.match_id); onLocalSaveRes(e.target.value, el.match_id) }} />
                   <label >x</label>
+                </div>
+                <div className="radio-btn">
+                  <input value="2" type="radio" name={i.toString()}
+                    onChange={(e) => { onInputResult(e.target.value, el.match_id); onLocalSaveRes(e.target.value, el.match_id) }} />
+                  <label >2</label>
                 </div>
 
               </div>
