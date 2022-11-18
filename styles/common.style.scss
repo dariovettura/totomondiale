@@ -673,11 +673,12 @@ html {
   top: 0;
   left: 0;
   height: 120vh;
-  width: 100vh;
+  width: 100vw;
 
   background: linear-gradient(180deg, #fda855 0%, rgba(255, 255, 255, 1) 50%);
 }
 header {
+	z-index: 1000;
   position: fixed;
   display: flex;
   width: 100vw;
