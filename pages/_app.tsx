@@ -24,10 +24,12 @@ function App({ Component, pageProps }: AppProps) {
     </main>
   );
 }
-export default process.env.PASSWORD_PROTECT
-  ? withPasswordProtect(App, {
-      // Options go here (optional)
-      // loginApiUrl: "/login",
-      // checkApiUrl:"/passwordCheck",
-    })
-  : App;
+
+export default App;
+// export default process.env.PASSWORD_PROTECT
+//   ? withPasswordProtect(App, {
+//       // Options go here (optional)
+//       // loginApiUrl: "/login",
+//       // checkApiUrl:"/passwordCheck",
+//     })
+//   : App;
