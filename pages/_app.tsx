@@ -19,7 +19,7 @@ function App({ Component, pageProps }: AppProps) {
         }
       `}</style>
       {" "}
-      <Header></Header>
+      {/* <Header></Header> */}
       <Component  {...pageProps} />
     </main>
   );
