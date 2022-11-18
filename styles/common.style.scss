@@ -677,6 +677,13 @@ html {
  
   background: linear-gradient(180deg, #fda855 0%, rgba(255, 255, 255, 1) 50%);
 }
+
+select{
+	padding: 10px;
+	border-radius: 10px;
+	min-width: 200px;
+	text-align: center;
+}
 .MuiButtonBase-root {
   font-family: "Roboto";
   background:

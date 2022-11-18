@@ -328,7 +328,7 @@ export default function Insert() {
           <div key={i}>
             <h3>Girone {el} passano (2pt per squadra)</h3>
             <div>
-              <div>
+              <div className="dv-d-flex dv-f-col dv-gap-10 mb-30" >
                 <label htmlFor={`sq1-{el}`}>Girone {el} Squadra 1</label>
                 <select value={myPlayOffResults[`girone${el}1`]} onChange={(e) => addPlayoffResult(e.target.value, `girone${el}1`)}>
                   <option>scegli</option>
@@ -343,7 +343,7 @@ export default function Insert() {
                     })}
                 </select>
               </div>
-              <div>
+              <div className="dv-d-flex dv-f-col dv-gap-10 mb-30">
                 <label htmlFor={`sq2-{el}`}>Girone {el} Squadra 2</label>
                 <select value={myPlayOffResults[`girone${el}2`]} onChange={(e) => addPlayoffResult(e.target.value, `girone${el}2`)}>
                   <option>scegli</option>
@@ -364,7 +364,7 @@ export default function Insert() {
 
         <h3>Quarti passano (2pt per squadra)</h3>
         {quarters.map((el, i) => (
-          <div key={i}>
+          <div className="dv-d-flex dv-f-col dv-gap-10 mb-30" key={i}>
             <label htmlFor={`sq-{el}`}>Quarti Squadra {el}</label>
             <select value={myPlayOffResults[`quarti${el}`]} onChange={(e) => addPlayoffResult(e.target.value, `quarti${el}`)}>
               <option>scegli</option>
@@ -381,7 +381,7 @@ export default function Insert() {
 
         <h3>Semifinali passano (2pt per squadra)</h3>
         {semifinals.map((el, i) => (
-          <div key={i}>
+          <div className="dv-d-flex dv-f-col dv-gap-10 mb-30" key={i}>
             <label htmlFor={`sq-{el}`}>Semi Squadra {el}</label>
             <select value={myPlayOffResults[`semi${el}`]} onChange={(e) => addPlayoffResult(e.target.value, `semi${el}`)}>
               <option>scegli</option>
@@ -398,7 +398,7 @@ export default function Insert() {
 
         <h3>Finale 3zo posto (6pt per squadra)</h3>
         {thirdPlace.map((el, i) => (
-          <div key={i}>
+          <div className="dv-d-flex dv-f-col dv-gap-10 mb-30" key={i}>
             <label htmlFor={`sq-{el}`}>Finale 3/4 Squadra {el}</label>
             <select value={myPlayOffResults[`terzo${el}`]} onChange={(e) => addPlayoffResult(e.target.value, `terzo${el}`)}>
               <option>scegli</option>
@@ -415,7 +415,7 @@ export default function Insert() {
 
         <h3>Finale (8pt per squadra)</h3>
         {finals.map((el, i) => (
-          <div key={i}>
+          <div className="dv-d-flex dv-f-col dv-gap-10 mb-30" key={i}>
             <label htmlFor={`sq-{el}`}>Finale Squadra {el}</label>
             <select value={myPlayOffResults[`finale${el}`]}  onChange={(e) => addPlayoffResult(e.target.value, `finale${el}`)}>
               <option>scegli</option>
@@ -485,7 +485,7 @@ export default function Insert() {
         </div>
       </div>
 
-      {/* <Dialog
+      <Dialog
         ref={afterSendDialog}
         onClose={() => setOpenDialogSend(false)}
         open={openDialogSend}
@@ -558,7 +558,7 @@ export default function Insert() {
             Invia schedina modificata
           </Button>
         </div>
-      </Dialog> */}
+      </Dialog>
     </>
   );
 }
