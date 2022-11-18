@@ -131,6 +131,7 @@ export default function Insert() {
 
 
   React.useEffect(() => {
+    console.log("ciao")
     if (localStorage.getItem('myRes')) {
       const res: any = localStorage.getItem('myRes');
       setMyResult(JSON.parse(res));
@@ -288,7 +289,7 @@ export default function Insert() {
           justifyContent: "center",
         }}
       >
-        {/* {groupsCal.map((el, i) => {
+      {groupsCal.map((el, i) => {
           return (
             <div
               key={i}
@@ -325,7 +326,7 @@ export default function Insert() {
                   <option value="2">2</option>
                   <option value="x">x</option>
  label={}                 </Select> */}
-              {/* </div>
+             </div>
               <div className="dv-d-flex gap-10 dv-ai-center dv-jc-center">
                 <div className="radio-btn">
                   <input checked={myResult[i]?.result.toString() == "1"} value="1" type="radio" name={i.toString()}
@@ -346,7 +347,7 @@ export default function Insert() {
               </div>
             </div>
           );
-        })} */} 
+        })} 
 
         <div className="dv-d-flex dv-ai-center dv-f-col mb-100 mt-40" style={{textAlign:"center"}}>
 
@@ -354,7 +355,7 @@ export default function Insert() {
           <div key={i}>
             <h3>Girone {el} passano (2pt per squadra)</h3>
           
-              <FormControl sx={{ m: 1, minWidth: 220 }} >
+              
 
                 <InputLabel id={`sq1-${el}`} >Girone {el} Squadra 1</InputLabel>
                 <Select labelId={`sq1-${el}`} label={`Girone ${el} Squadra 1`} value={myPlayOffResults[`girone${el}1`]} onChange={(e) => addPlayoffResult(e.target.value, `girone${el}1`)}>
@@ -368,8 +369,8 @@ export default function Insert() {
                       );
                     })}
                 </Select>
-                </FormControl>
-                <FormControl sx={{ m: 1, minWidth: 220 }} >
+                
+                
                 <InputLabel id={`sq2-${el}`} >Girone {el} Squadra 2</InputLabel>
                 <Select labelId={`sq2-${el}`} label={`Girone ${el} Squadra 2`} value={myPlayOffResults[`girone${el}2`]} onChange={(e) => addPlayoffResult(e.target.value, `girone${el}2`)}>
 
@@ -384,15 +385,15 @@ export default function Insert() {
                     })}
                 </Select>
              
-                </FormControl>
+                
           </div>
 
         ))}
 
         <h3>Quarti passano (2pt per squadra)</h3>
         {quarters.map((el, i) => (
-          <FormControl sx={{ m: 1, minWidth: 220 }} key={i}>
-            <InputLabel id={`qsq-${el}`}>Quarti Squadra {el}</InputLabel>
+          <>
+           <InputLabel id={`qsq-${el}`}>Quarti Squadra {el}</InputLabel>
             <Select labelId={`qsq-${el}`} label={`Quarti Squadra ${el}`} value={myPlayOffResults[`quarti${el}`]} onChange={(e) => addPlayoffResult(e.target.value, `quarti${el}`)}>
 
               {teams.map((el, i) => {
@@ -403,12 +404,12 @@ export default function Insert() {
                 );
               })}
             </Select>
-          </FormControl>
+            </>
         ))}
 
         <h3>Semifinali passano (2pt per squadra)</h3>
         {semifinals.map((el, i) => (
-          <FormControl sx={{ m: 1, minWidth: 220 }} key={i}>
+          <>
             <InputLabel id={`ssq-${el}`}>Semi Squadra {el}</InputLabel>
             <Select labelId={`ssq-${el}`} label={`Semi Squadra ${el}`} value={myPlayOffResults[`semi${el}`]} onChange={(e) => addPlayoffResult(e.target.value, `semi${el}`)}>
 
@@ -420,12 +421,12 @@ export default function Insert() {
                 );
               })}
             </Select>
-          </FormControl>
+          </>
         ))}
 
         <h3>Finale 3zo posto (6pt per squadra)</h3>
         {thirdPlace.map((el, i) => (
-          <FormControl sx={{ m: 1, minWidth: 220 }} key={i}>
+          <>
             <InputLabel id={`fsq-${el}`}>Finale 3/4 Squadra {el}</InputLabel>
             <Select labelId={`fsq-${el}`} label={`Finale 3/4 Squadra ${el}`} value={myPlayOffResults[`terzo${el}`]} onChange={(e) => addPlayoffResult(e.target.value, `terzo${el}`)}>
 
@@ -437,12 +438,12 @@ export default function Insert() {
                 );
               })}
             </Select>
-          </FormControl>
+          </>
         ))}
 
         <h3>Finale (8pt per squadra)</h3>
         {finals.map((el, i) => (
-          <FormControl sx={{ m: 1, minWidth: 220 }} key={i}>
+          <>
             <InputLabel id={`ffsq-${el}`}>Finale Squadra {el}</InputLabel>
             <Select labelId={`ffsq-${el}`} label={`Finale Squadra ${el}`} value={myPlayOffResults[`finale${el}`]} onChange={(e) => addPlayoffResult(e.target.value, `finale${el}`)}>
 
@@ -454,11 +455,11 @@ export default function Insert() {
                 );
               })}
             </Select>
-          </FormControl>
+          </>
         ))}
 
         <h3>Vincitrice (12 pt)</h3>
-        <FormControl sx={{ m: 1, minWidth: 220 }} >
+        
           <InputLabel id={`winner`}>Vincitrice</InputLabel>
           <Select labelId={`winner`} label={`Vincitrice`} value={myPlayOffResults[`vincitrice`]} onChange={(e) => addPlayoffResult(e.target.value, `vincitrice`)}>
 
@@ -470,10 +471,10 @@ export default function Insert() {
               );
             })}
           </Select>
-        </FormControl>
+        
 
         <h3>Squadra con capocannoniere (5pt)</h3>
-        <FormControl sx={{ m: 1, minWidth: 220 }} >
+        
           <InputLabel id={`goleador`}>Sq Capocannoniere</InputLabel>
           <Select labelId={`goleador`} label={`Sq Capocannoniere`} value={myPlayOffResults[`capocannoniere`]} onChange={(e) => addPlayoffResult(e.target.value, `capocannoniere`)}>
 
@@ -485,7 +486,7 @@ export default function Insert() {
               );
             })}
           </Select>
-        </FormControl>
+        
         </div>
 
         <div className="dv-d-flex dv-ai-center dv-f-col mb-100 mt-40">
