@@ -328,17 +328,17 @@ export default function Insert() {
               </div>
               <div className="dv-d-flex gap-10 dv-ai-center dv-jc-center">
                 <div className="radio-btn">
-                  <input value="1" type="radio" name={i.toString()}
+                  <input checked={myResult[i]?.result.toString() == "1"} value="1" type="radio" name={i.toString()}
                     onChange={(e) => { onInputResult(e.target.value, el.match_id); onLocalSaveRes(e.target.value, el.match_id) }} />
                   <label >1</label>
                 </div>
                 <div className="radio-btn">
-                  <input value="x" type="radio" name={i.toString()}
+                  <input checked={myResult[i]?.result.toString() == "x"} value="x" type="radio" name={i.toString()}
                     onChange={(e) => { onInputResult(e.target.value, el.match_id); onLocalSaveRes(e.target.value, el.match_id) }} />
                   <label >x</label>
                 </div>
                 <div className="radio-btn">
-                  <input value="2" type="radio" name={i.toString()}
+                  <input checked={myResult[i]?.result.toString() == "2"} value="2" type="radio" name={i.toString()}
                     onChange={(e) => { onInputResult(e.target.value, el.match_id); onLocalSaveRes(e.target.value, el.match_id) }} />
                   <label >2</label>
                 </div>
