@@ -276,7 +276,7 @@ export default function Insert() {
                 <span> GRUPPO {el.group.group_name} </span>
                 <span> DATA {el.match_start}</span>
               </div>
-              <div style={{fontWeight:"600"}}>
+              <div className="dv-d-flex dv-ai-center" style={{fontWeight:"600"}}>
                 <img
                   style={{ width: "30px", height: "30px" }}
                   src={el?.home_team?.logo}
