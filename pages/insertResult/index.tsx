@@ -485,7 +485,7 @@ export default function Insert() {
         </div>
       </div>
 
-      <Dialog
+      {/* <Dialog
         ref={afterSendDialog}
         onClose={() => setOpenDialogSend(false)}
         open={openDialogSend}
@@ -558,7 +558,7 @@ export default function Insert() {
             Invia schedina modificata
           </Button>
         </div>
-      </Dialog>
+      </Dialog> */}
     </>
   );
 }
