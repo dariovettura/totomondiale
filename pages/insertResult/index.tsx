@@ -354,10 +354,10 @@ export default function Insert() {
         {groups.map((el, i) => (
           <div key={i}>
             <h3>Girone {el} passano (2pt per squadra)</h3>
-          
-              
-
-            <select value={myPlayOffResults[`girone${el}1`]} onChange={(e) => addPlayoffResult(e.target.value, `girone${el}1`)}>
+            <div>
+              <div>
+                <label htmlFor={`sq1-{el}`}>Girone {el} Squadra 1</label>
+                <select value={myPlayOffResults[`girone${el}1`]} onChange={(e) => addPlayoffResult(e.target.value, `girone${el}1`)}>
                   <option>scegli</option>
                   {teams
                     .filter((te, i) => te.group_name == el)
@@ -369,122 +369,119 @@ export default function Insert() {
                       );
                     })}
                 </select>
-                
-                <InputLabel id={`sq2-${el}`} >Girone {el} Squadra 2</InputLabel>
-                <Select labelId={`sq2-${el}`} label={`Girone ${el} Squadra 2`} value={myPlayOffResults[`girone${el}2`]} onChange={(e) => addPlayoffResult(e.target.value, `girone${el}2`)}>
-
+              </div>
+              <div>
+                <label htmlFor={`sq2-{el}`}>Girone {el} Squadra 2</label>
+                <select value={myPlayOffResults[`girone${el}2`]} onChange={(e) => addPlayoffResult(e.target.value, `girone${el}2`)}>
+                  <option>scegli</option>
                   {teams
                     .filter((te, i) => te.group_name == el)
                     .map((el, i) => {
                       return (
-                        <MenuItem key={i} value={el.team_id}>
+                        <option key={i} value={el.team_id}>
                           {el.name}
-                        </MenuItem>
+                        </option>
                       );
                     })}
-                </Select>
-             
-                
+                </select>
+              </div>
+            </div>
           </div>
-
         ))}
 
         <h3>Quarti passano (2pt per squadra)</h3>
         {quarters.map((el, i) => (
-          <>
-           <InputLabel id={`qsq-${el}`}>Quarti Squadra {el}</InputLabel>
-            <Select labelId={`qsq-${el}`} label={`Quarti Squadra ${el}`} value={myPlayOffResults[`quarti${el}`]} onChange={(e) => addPlayoffResult(e.target.value, `quarti${el}`)}>
-
+          <div key={i}>
+            <label htmlFor={`sq-{el}`}>Quarti Squadra {el}</label>
+            <select value={myPlayOffResults[`quarti${el}`]} onChange={(e) => addPlayoffResult(e.target.value, `quarti${el}`)}>
+              <option>scegli</option>
               {teams.map((el, i) => {
                 return (
-                  <MenuItem key={i} value={el.team_id}>
+                  <option key={i} value={el.team_id}>
                     {el.name}
-                  </MenuItem>
+                  </option>
                 );
               })}
-            </Select>
-            </>
+            </select>
+          </div>
         ))}
 
         <h3>Semifinali passano (2pt per squadra)</h3>
         {semifinals.map((el, i) => (
-          <>
-            <InputLabel id={`ssq-${el}`}>Semi Squadra {el}</InputLabel>
-            <Select labelId={`ssq-${el}`} label={`Semi Squadra ${el}`} value={myPlayOffResults[`semi${el}`]} onChange={(e) => addPlayoffResult(e.target.value, `semi${el}`)}>
-
+          <div key={i}>
+            <label htmlFor={`sq-{el}`}>Semi Squadra {el}</label>
+            <select value={myPlayOffResults[`semi${el}`]} onChange={(e) => addPlayoffResult(e.target.value, `semi${el}`)}>
+              <option>scegli</option>
               {teams.map((el, i) => {
                 return (
-                  <MenuItem key={i} value={el.team_id}>
+                  <option key={i} value={el.team_id}>
                     {el.name}
-                  </MenuItem>
+                  </option>
                 );
               })}
-            </Select>
-          </>
+            </select>
+          </div>
         ))}
 
         <h3>Finale 3zo posto (6pt per squadra)</h3>
         {thirdPlace.map((el, i) => (
-          <>
-            <InputLabel id={`fsq-${el}`}>Finale 3/4 Squadra {el}</InputLabel>
-            <Select labelId={`fsq-${el}`} label={`Finale 3/4 Squadra ${el}`} value={myPlayOffResults[`terzo${el}`]} onChange={(e) => addPlayoffResult(e.target.value, `terzo${el}`)}>
-
+          <div key={i}>
+            <label htmlFor={`sq-{el}`}>Finale 3/4 Squadra {el}</label>
+            <select value={myPlayOffResults[`terzo${el}`]} onChange={(e) => addPlayoffResult(e.target.value, `terzo${el}`)}>
+              <option>scegli</option>
               {teams.map((el, i) => {
                 return (
-                  <MenuItem key={i} value={el.team_id}>
+                  <option key={i} value={el.team_id}>
                     {el.name}
-                  </MenuItem>
+                  </option>
                 );
               })}
-            </Select>
-          </>
+            </select>
+          </div>
         ))}
 
         <h3>Finale (8pt per squadra)</h3>
         {finals.map((el, i) => (
-          <>
-            <InputLabel id={`ffsq-${el}`}>Finale Squadra {el}</InputLabel>
-            <Select labelId={`ffsq-${el}`} label={`Finale Squadra ${el}`} value={myPlayOffResults[`finale${el}`]} onChange={(e) => addPlayoffResult(e.target.value, `finale${el}`)}>
-
+          <div key={i}>
+            <label htmlFor={`sq-{el}`}>Finale Squadra {el}</label>
+            <select value={myPlayOffResults[`finale${el}`]}  onChange={(e) => addPlayoffResult(e.target.value, `finale${el}`)}>
+              <option>scegli</option>
               {teams.map((el, i) => {
                 return (
-                  <MenuItem key={i} value={el.team_id}>
+                  <option key={i} value={el.team_id}>
                     {el.name}
-                  </MenuItem>
+                  </option>
                 );
               })}
-            </Select>
-          </>
+            </select>
+          </div>
         ))}
 
         <h3>Vincitrice (12 pt)</h3>
-        
-          <InputLabel id={`winner`}>Vincitrice</InputLabel>
-          <Select labelId={`winner`} label={`Vincitrice`} value={myPlayOffResults[`vincitrice`]} onChange={(e) => addPlayoffResult(e.target.value, `vincitrice`)}>
-
-            {teams.map((el, i) => {
-              return (
-                <MenuItem key={i} value={el.team_id}>
-                  {el.name}
-                </MenuItem>
-              );
-            })}
-          </Select>
-        
+        <label htmlFor={`winner`}>Vincitrice</label>
+        <select value={myPlayOffResults[`vincitrice`]}  onChange={(e) => addPlayoffResult(e.target.value, `vincitrice`)}>
+          <option>scegli</option>
+          {teams.map((el, i) => {
+            return (
+              <option key={i} value={el.team_id}>
+                {el.name}
+              </option>
+            );
+          })}
+        </select>
 
         <h3>Squadra con capocannoniere (5pt)</h3>
-        
-          <InputLabel id={`goleador`}>Sq Capocannoniere</InputLabel>
-          <Select labelId={`goleador`} label={`Sq Capocannoniere`} value={myPlayOffResults[`capocannoniere`]} onChange={(e) => addPlayoffResult(e.target.value, `capocannoniere`)}>
-
-            {teams.map((el, i) => {
-              return (
-                <MenuItem key={i} value={el.team_id}>
-                  {el.name}
-                </MenuItem>
-              );
-            })}
-          </Select>
+        <label htmlFor={`goleador`}>Sq Capocannoniere</label>
+        <select value={myPlayOffResults[`capocannoniere`]} onChange={(e) => addPlayoffResult(e.target.value, `capocannoniere`)}>
+          <option>scegli</option>
+          {teams.map((el, i) => {
+            return (
+              <option key={i} value={el.team_id}>
+                {el.name}
+              </option>
+            );
+          })}
+        </select>
         
         </div>
 
