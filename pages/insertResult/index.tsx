@@ -13,7 +13,7 @@ import axios from "axios";
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-
+import flags from "../../flags/flags";
 import teams from "../../teams/teams";
 
 export default function Insert() {
@@ -279,13 +279,13 @@ export default function Insert() {
               <div className="dv-d-flex dv-ai-center" style={{fontWeight:"600"}}>
                 <img
                   style={{ width: "30px", height: "30px" }}
-                  src={el?.home_team?.logo}
+                  src={flags[el?.home_team?.team_id]}
                   alt=""
                 />{" "}
                 {el?.home_team?.name} - {el?.away_team?.name}{" "}
                 <img
                   style={{ width: "30px", height: "30px" }}
-                  src={el?.away_team?.logo}
+                  src={flags[el?.away_team?.team_id]}
                   alt=""
                 />{" "}
 

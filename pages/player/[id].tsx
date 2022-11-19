@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import teams from "../../teams/teams";
+import flags from "../../flags/flags";
 
 interface Props {
   posts?: any[];
@@ -47,8 +48,8 @@ const Player: NextPage<Props> = ({ posts, infos }) => {
   };
 
   const getTeamName = (id: any) => {
-    return teams?.find(el => el.team_id == id)?.name
-  }
+    return teams?.find((el) => el.team_id == id)?.name;
+  };
 
   React.useEffect(() => {
     getMyResults();
@@ -76,13 +77,13 @@ const Player: NextPage<Props> = ({ posts, infos }) => {
               <div>
                 <img
                   style={{ width: "30px", height: "30px" }}
-                  src={el?.home_team?.logo}
+                  src={flags[el?.home_team?.team_id]}
                   alt=""
                 />{" "}
                 {el?.home_team?.name} - {el?.away_team?.name}{" "}
                 <img
                   style={{ width: "30px", height: "30px" }}
-                  src={el?.away_team?.logo}
+                  src={flags[el?.away_team?.team_id]}
                   alt=""
                 />
                 <span
@@ -98,30 +99,43 @@ const Player: NextPage<Props> = ({ posts, infos }) => {
             </div>
           ))}
 
-          {groups.map((el:any, i) => (
+          {groups.map((el: any, i) => (
             <div key={i}>
               <h3>Girone {el} passano (2pt per squadra)</h3>
               <div>
                 <div>
                   <label htmlFor={`sq1-{el}`}>Girone {el} Squadra 1</label>
                   <span
-                   style={{
-                    fontSize: "30px",
-                    fontWeight: "bold",
-                    marginLeft: "20px",
-                  }}>{getTeamName(myOffRes[`girone${el}1`])}</span>
-                
-                  
+                    style={{
+                      fontSize: "30px",
+                      fontWeight: "bold",
+                      marginLeft: "20px",
+                    }}
+                  >
+                    {getTeamName(myOffRes[`girone${el}1`])}
+                    <img
+                      style={{ width: "30px", height: "30px" }}
+                      src={flags[myOffRes[`girone${el}1`]]}
+                      alt=""
+                    />
+                  </span>
                 </div>
                 <div>
                   <label htmlFor={`sq2-{el}`}>Girone {el} Squadra 2</label>
                   <span
-                   style={{
-                    fontSize: "30px",
-                    fontWeight: "bold",
-                    marginLeft: "20px",
-                  }}>{getTeamName(myOffRes[`girone${el}2`])}</span>
-                
+                    style={{
+                      fontSize: "30px",
+                      fontWeight: "bold",
+                      marginLeft: "20px",
+                    }}
+                  >
+                    {getTeamName(myOffRes[`girone${el}2`])}
+                    <img
+                      style={{ width: "30px", height: "30px" }}
+                      src={flags[myOffRes[`girone${el}2`]]}
+                      alt=""
+                    />
+                  </span>
                 </div>
               </div>
             </div>
@@ -132,11 +146,19 @@ const Player: NextPage<Props> = ({ posts, infos }) => {
             <div key={i}>
               <label htmlFor={`sq-{el}`}>Quarti Squadra {el}</label>
               <span
-               style={{
-                fontSize: "30px",
-                fontWeight: "bold",
-                marginLeft: "20px",
-              }}>{getTeamName(myOffRes[`quarti${el}`])}</span>
+                style={{
+                  fontSize: "30px",
+                  fontWeight: "bold",
+                  marginLeft: "20px",
+                }}
+              >
+                {getTeamName(myOffRes[`quarti${el}`])}
+                <img
+                  style={{ width: "30px", height: "30px" }}
+                  src={flags[myOffRes[`quarti${el}`]]}
+                  alt=""
+                />
+              </span>
             </div>
           ))}
 
@@ -145,12 +167,19 @@ const Player: NextPage<Props> = ({ posts, infos }) => {
             <div key={i}>
               <label htmlFor={`sq-{el}`}>Semi Squadra {el}</label>
               <span
-               style={{
-                fontSize: "30px",
-                fontWeight: "bold",
-                marginLeft: "20px",
-              }}>{getTeamName(myOffRes[`semi${el}`])}</span>
-           
+                style={{
+                  fontSize: "30px",
+                  fontWeight: "bold",
+                  marginLeft: "20px",
+                }}
+              >
+                {getTeamName(myOffRes[`semi${el}`])}
+                <img
+                  style={{ width: "30px", height: "30px" }}
+                  src={flags[myOffRes[`semi${el}`]]}
+                  alt=""
+                />
+              </span>
             </div>
           ))}
 
@@ -159,11 +188,19 @@ const Player: NextPage<Props> = ({ posts, infos }) => {
             <div key={i}>
               <label htmlFor={`sq-{el}`}>Finale 3/4 Squadra {el}</label>
               <span
-               style={{
-                fontSize: "30px",
-                fontWeight: "bold",
-                marginLeft: "20px",
-              }}>{getTeamName(myOffRes[`terzo${el}`])}</span>
+                style={{
+                  fontSize: "30px",
+                  fontWeight: "bold",
+                  marginLeft: "20px",
+                }}
+              >
+                {getTeamName(myOffRes[`terzo${el}`])}
+                <img
+                  style={{ width: "30px", height: "30px" }}
+                  src={flags[myOffRes[`terzo${el}`]]}
+                  alt=""
+                />
+              </span>
             </div>
           ))}
 
@@ -172,33 +209,55 @@ const Player: NextPage<Props> = ({ posts, infos }) => {
             <div key={i}>
               <label htmlFor={`sq-{el}`}>Finale Squadra {el}</label>
               <span
-               style={{
-                fontSize: "30px",
-                fontWeight: "bold",
-                marginLeft: "20px",
-              }}>{getTeamName(myOffRes[`finale${el}`])}</span>
+                style={{
+                  fontSize: "30px",
+                  fontWeight: "bold",
+                  marginLeft: "20px",
+                }}
+              >
+                {getTeamName(myOffRes[`finale${el}`])}
+                <img
+                  style={{ width: "30px", height: "30px" }}
+                  src={flags[myOffRes[`finale${el}`]]}
+                  alt=""
+                />
+              </span>
             </div>
           ))}
 
           <h3>Vincitrice (12 pt)</h3>
           <label htmlFor={`winner`}>Vincitrice</label>
           <span
-           style={{
-            fontSize: "30px",
-            fontWeight: "bold",
-            marginLeft: "20px",
-          }}>{getTeamName(myOffRes[`vincitrice`])}</span>
-        
+            style={{
+              fontSize: "30px",
+              fontWeight: "bold",
+              marginLeft: "20px",
+            }}
+          >
+            {getTeamName(myOffRes[`vincitrice`])}
+            <img
+              style={{ width: "30px", height: "30px" }}
+              src={flags[myOffRes[`vincitrice`]]}
+              alt=""
+            />
+          </span>
 
           <h3>Squadra con capocannoniere (5pt)</h3>
           <label htmlFor={`goleador`}>Sq Capocannoniere</label>
           <span
-           style={{
-            fontSize: "30px",
-            fontWeight: "bold",
-            marginLeft: "20px",
-          }}>{getTeamName(myOffRes[`capocannoniere`])}</span>
-        
+            style={{
+              fontSize: "30px",
+              fontWeight: "bold",
+              marginLeft: "20px",
+            }}
+          >
+            {getTeamName(myOffRes[`capocannoniere`])}
+            <img
+              style={{ width: "30px", height: "30px" }}
+              src={flags[myOffRes[`capocannoniere`]]}
+              alt=""
+            />
+          </span>
         </div>
       </div>
     </>
