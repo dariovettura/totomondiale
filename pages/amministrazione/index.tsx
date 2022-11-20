@@ -132,7 +132,7 @@ return (
         }}
       >
         <span style={{ marginTop: "20px", marginBottom: "20px" }}>
-          Pagina per l'amministazione
+          Pagina per amministratori
         </span>
         <span style={{ marginTop: "20px", marginBottom: "20px" }}>
           Qui si aggiornano i risultati, se non sei amministratore non mettere numeri a cazzo
