@@ -17,7 +17,7 @@ export default {
   "3054": "https://cdn.sportdataapi.com/images/soccer/teams/100/27.png",
   "3064": "https://cdn.sportdataapi.com/images/soccer/teams/100/24.png",
   "3080": "https://cdn.sportdataapi.com/images/soccer/teams/100/31.png",
-  "7835": "https://cdn.sportdataapi.com/images/soccer/teams/100/225.png",
+  "7835": "https://www.transparentpng.com/thumb/canada-flag/canada-images-canada-flag-png-0.png",
   "7841": "https://cdn.sportdataapi.com/images/soccer/teams/100/235.png",
   "7850": "https://cdn.sportdataapi.com/images/soccer/teams/100/232.png",
   "12396": "https://cdn.sportdataapi.com/images/soccer/teams/100/242.png",
