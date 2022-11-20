@@ -2998,32 +2998,8 @@ export default[
           "is_current": null
       },
       "referee_id": null,
-      "home_team": {
-        "team_id": 56,
-        "name": "Senegal",
-        "short_code": "SEN",
-        "common_name": "",
-        "logo": "https://cdn.sportdataapi.com/images/soccer/teams/100/252.png",
-        "country": {
-            "country_id": 7,
-            "name": "World",
-            "country_code": null,
-            "continent": "World"
-        }
-    },
-      "away_team": {
-        "team_id": 3080,
-        "name": "Netherlands",
-        "short_code": "NED",
-        "common_name": "",
-        "logo": "https://cdn.sportdataapi.com/images/soccer/teams/100/31.png",
-        "country": {
-            "country_id": 7,
-            "name": "World",
-            "country_code": null,
-            "continent": "World"
-        }
-    },
+      "home_team": null,
+      "away_team": null,
       "stats": {
           "home_score": 0,
           "away_score": 0,
