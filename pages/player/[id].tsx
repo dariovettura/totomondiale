@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import teams from "../../teams/teams";
 import flagss from "../../flags/flags";
+import results from "../../calendar/fake_result";
 
 interface Props {
   posts?: any[];
@@ -76,7 +77,7 @@ const flags : any = flagss
         >
           <span style={{ fontSize: "30px", fontWeight: "bold" }}>{name}</span>
 
-          {myRes.map((el, i) => (
+          {/* {myRes.map((el, i) => (
             <div key={i} style={{ display: "flex", flexDirection: "column" }}>
               <div className="dv-d-flex dv-f-row dv-gap-10 dv-ai-center dv-jc-center">
                 <img
@@ -101,7 +102,67 @@ const flags : any = flagss
                 </span>
               </div>
             </div>
-          ))}
+          ))} */}
+
+{myRes.map((el, i) => {
+                // statuses: 0 = not played 1 = won, -1 = lost
+                let status = 0;
+                const res = results?.find(
+                  (resel) => resel.match_id == el.match_id
+                );
+                const matchPlayed = res?.status == "finished";
+                if (matchPlayed) {
+                  if (
+                    res.stats.home_score > res.stats.away_score &&
+                    el.result == "1"
+                  )
+                    status = 1;
+                  else if (
+                    res.stats.home_score < res.stats.away_score &&
+                    el.result == "2"
+                  )
+                    status = 1;
+                  else if (
+                    res.stats.home_score == res.stats.away_score &&
+                    el.result == "x"
+                  )
+                    status = 1;
+                  else status = -1;
+                }
+                const resultColor = status == 1 ? "green" : status == -1 ? "red" : "black";
+                return (
+                  <div
+                    key={i}
+                    
+                    style={{ display: "flex", flexDirection: "column" }}
+                  >
+                    <div className="dv-d-flex dv-f-row dv-gap-10 dv-ai-center dv-jc-center">
+                      <img
+                        style={{ width: "30px", height: "30px" }}
+                        src={flags[el?.home_team?.team_id]}
+                        alt=""
+                      />{" "}
+                      {el?.home_team?.name} {matchPlayed && res.stats.home_score} - {matchPlayed && res.stats.away_score} {el?.away_team?.name}{" "}
+                      <img
+                        style={{ width: "30px", height: "30px" }}
+                        src={flags[el?.away_team?.team_id]}
+                        alt=""
+                      />
+                      {}
+                      <span
+                        style={{
+                          marginLeft:"30px",
+                          fontSize: "30px",
+                          fontWeight: "bold",
+                          color: resultColor,
+                        }}
+                      >
+                        {el.result}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
 
           {groups.map((el: any, i) => (
             <div key={i}>
