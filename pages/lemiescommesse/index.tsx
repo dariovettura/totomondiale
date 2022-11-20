@@ -12,6 +12,7 @@ import teams from "../../teams/teams";
 import flags from "../../flags/flags";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import results from "../../calendar/fake_result";
 
 interface Props {
   posts?: any[];
@@ -115,37 +116,66 @@ const LeScommesse: NextPage<Props> = ({ posts, infos }) => {
             Mostra le tue scommesse
           </Button>
           <span style={{ fontSize: "30px", fontWeight: "bold" }}>{name}</span>
-          
+
           {myRes.length > 0 && (
             <>
-              {myRes.map((el, i) => (
-                <div
-                  key={i}
-                  style={{ display: "flex", flexDirection: "column" }}
-                >
-                  <div>
-                    <img
-                      style={{ width: "30px", height: "30px" }}
-                      src={flags[el?.home_team?.team_id]}
-                      alt=""
-                    />{" "}
-                    {el?.home_team?.name} - {el?.away_team?.name}{" "}
-                    <img
-                      style={{ width: "30px", height: "30px" }}
-                      src={flags[el?.away_team?.team_id]}
-                      alt=""
-                    />
-                    <span
-                      style={{
-                        fontSize: "30px",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      {el.result}
-                    </span>
+              {myRes.map((el, i) => {
+                // statuses: 0 = not played 1 = won, -1 = lost
+                let status = 0;
+                const res = results?.find(
+                  (resel) => resel.match_id == el.match_id
+                );
+                const matchPlayed = res?.status == "finished";
+                if (matchPlayed) {
+                  if (
+                    res.stats.home_score > res.stats.away_score &&
+                    el.result == "1"
+                  )
+                    status = 1;
+                  else if (
+                    res.stats.home_score < res.stats.away_score &&
+                    el.result == "2"
+                  )
+                    status = 1;
+                  else if (
+                    res.stats.home_score == res.stats.away_score &&
+                    el.result == "x"
+                  )
+                    status = 1;
+                  else status = -1;
+                }
+                const resultColor = status == 1 ? "green" : status == -1 ? "red" : "black";
+                return (
+                  <div
+                    key={i}
+                    style={{ display: "flex", flexDirection: "column" }}
+                  >
+                    <div>
+                      <img
+                        style={{ width: "30px", height: "30px" }}
+                        src={flags[el?.home_team?.team_id]}
+                        alt=""
+                      />{" "}
+                      {el?.home_team?.name} {matchPlayed && res.stats.home_score} - {matchPlayed && res.stats.away_score} {el?.away_team?.name}{" "}
+                      <img
+                        style={{ width: "30px", height: "30px" }}
+                        src={flags[el?.away_team?.team_id]}
+                        alt=""
+                      />
+                      {}
+                      <span
+                        style={{
+                          fontSize: "30px",
+                          fontWeight: "bold",
+                          color: resultColor,
+                        }}
+                      >
+                        {el.result}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
               <div style={{ textAlign: "center" }}>
                 {groups.map((el: any, i) => (
                   <div key={i}>
