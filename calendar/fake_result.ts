@@ -126,7 +126,7 @@ export default[
   {
       "match_id": 429708,
       "status_code": 0,
-      "status": "notstarted",
+      "status": "finished",
       "match_start": "2022-11-21 17:00:00",
       "match_start_iso": "2022-11-21T17:00:00+00:00",
       "minute": null,
@@ -174,7 +174,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 0,
+          "away_score": 2,
           "ht_score": null,
           "ft_score": "0-2",
           "et_score": null,
