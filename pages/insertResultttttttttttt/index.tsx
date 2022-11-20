@@ -235,7 +235,7 @@ export default function Insert() {
 
   return (
     <>
-      <Snackbar
+      {/* <Snackbar
         open={error}
         autoHideDuration={6000}
         onClose={() => setError(false)}
@@ -291,15 +291,6 @@ export default function Insert() {
                   alt=""
                 />{" "}
 
-
-                {/* <Select
-                  value={myResult[i]?.result.toString()}
-                  onChange={(e) => { onInputResult(e.target.value, el.match_id); onLocalSaveRes(e.target.value, el.match_id) }}
-                >
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="x">x</option>
- label={}                 </Select> */}
              </div>
               <div className="dv-d-flex gap-10 dv-ai-center dv-jc-center">
                 <div className="radio-btn">
@@ -562,7 +553,7 @@ export default function Insert() {
             Invia schedina modificata
           </Button>
         </div>
-      </Dialog>
+      </Dialog> */}
     </>
   );
 }

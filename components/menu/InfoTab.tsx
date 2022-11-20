@@ -20,7 +20,7 @@ const InfoTab: React.FC<Props> = ({ onclick }) => {
           justifyContent: "center",
         }}
       >
-        <Link href={"/insertResult"}>
+        {/* <Link href={"/insertResult"}>
           <Button
             style={{ marginTop: "20px", marginBottom: "20px" }}
             onClick={onclick}
@@ -34,6 +34,14 @@ const InfoTab: React.FC<Props> = ({ onclick }) => {
             onClick={onclick}
           >
             Le tue scommesse
+          </Button>
+        </Link> */}
+        <Link href={"/amministrazione"}>
+          <Button
+            style={{ marginTop: "20px", marginBottom: "20px" }}
+            onClick={onclick}
+          >
+            Amministrazione
           </Button>
         </Link>
         {/* <Link href={"/classifica"}>

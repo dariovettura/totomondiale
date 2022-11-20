@@ -86,78 +86,85 @@ const Amministrazione: NextPage<Props> = ({ posts, infos }) => {
 
       return axios
         .get("/api/getCalendar")
-        .then((res) =>
+        .then((res) => {
+          order.customer_note = JSON.stringify(res.data.data);
           axios
-            .post("/api/updateMyResults", { id: +codicePers, data: order })
-            .then((res) => {
-              setLoader(false);
-              console.log(res);
-            })
-            .catch((err) => {
-              setLoader(false);
-              setError(true);
-            })
-          
-       );}}
+            .post("/api/updateMyResults", { id: 303, data: order })
+          .then((res) => {
+            setLoader(false);
+            console.log(res);
+          })
+          .catch((err) => {
+            setLoader(false);
+            setError(true);
+          })
+        }
+        )
+        .catch(err => { 
+          setLoader(false); 
+          setError(true); });
+    }
+    return;
+  }
 
 
 
-return (
-  <>
-    <Snackbar
-      open={error}
-      autoHideDuration={6000}
-      onClose={() => setError(false)}
-      message="Errore schedina non inviata"
-    // action={action}
-    />
-    <Backdrop
-      sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-      open={loader}
-      onClick={() => setLoader(false)}
-    >
-      <CircularProgress color="inherit" />
-    </Backdrop>
-    <div className="root">
-      <div
-        style={{
-          marginTop: "60px",
-          marginBottom: "60px",
-          width: "100vw",
-          display: "flex",
-          flexDirection: "column",
-          gap: "20px",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
+  return (
+    <>
+      <Snackbar
+        open={error}
+        autoHideDuration={6000}
+        onClose={() => setError(false)}
+        message="Errore schedina non inviata"
+      // action={action}
+      />
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={loader}
+        onClick={() => setLoader(false)}
       >
-        <span style={{ marginTop: "20px", marginBottom: "20px" }}>
-          Pagina per amministratori
-        </span>
-        <span style={{ marginTop: "20px", marginBottom: "20px" }}>
-          Qui si aggiornano i risultati, se non sei amministratore non mettere numeri a cazzo
-        </span>
-        <TextField
-          style={{ marginTop: "20px", marginBottom: "20px" }}
-          type="number"
-          onChange={(e) => setCodicePers(e.target.value)}
-          id="outlined-basic"
-          label="password"
-          variant="outlined"
-        />
-        <Button
-          style={{ marginTop: "20px", marginBottom: "20px" }}
-          onClick={updateResults}
+        <CircularProgress color="inherit" />
+      </Backdrop>
+      <div className="root">
+        <div
+          style={{
+            marginTop: "60px",
+            marginBottom: "60px",
+            width: "100vw",
+            display: "flex",
+            flexDirection: "column",
+            gap: "20px",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
         >
-          Aggiorna risultati
-        </Button>
-        <span style={{ fontSize: "30px", fontWeight: "bold" }}>{name}</span>
+          <span style={{ marginTop: "20px", marginBottom: "20px" }}>
+            Pagina per amministratori
+          </span>
+          <span style={{ marginTop: "20px", marginBottom: "20px" }}>
+            Qui si aggiornano i risultati, se non sei amministratore non mettere numeri a cazzo
+          </span>
+          <TextField
+            style={{ marginTop: "20px", marginBottom: "20px" }}
+            type="number"
+            onChange={(e) => setCodicePers(e.target.value)}
+            id="outlined-basic"
+            label="password"
+            variant="outlined"
+          />
+          <Button
+            style={{ marginTop: "20px", marginBottom: "20px" }}
+            onClick={updateResults}
+          >
+            Aggiorna risultati
+          </Button>
+          <span style={{ fontSize: "30px", fontWeight: "bold" }}>{name}</span>
 
 
+        </div>
       </div>
-    </div>
-  </>
-);
+    </>
+  );
 };
 
 export default Amministrazione;

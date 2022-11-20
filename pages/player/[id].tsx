@@ -78,7 +78,7 @@ const flags : any = flagss
 
           {myRes.map((el, i) => (
             <div key={i} style={{ display: "flex", flexDirection: "column" }}>
-              <div className="dv-d-flex dv-f-row dv-gap-10">
+              <div className="dv-d-flex dv-f-row dv-gap-10 dv-ai-center dv-jc-center">
                 <img
                   style={{ width: "30px", height: "30px" }}
                   src={flags[el?.home_team?.team_id]}
@@ -91,10 +91,10 @@ const flags : any = flagss
                   alt=""
                 />
                 <span
-                  style={{
+                  style={{marginLeft:"30px",
                     fontSize: "30px",
                     fontWeight: "bold",
-                    marginLeft: "20px",
+                   
                   }}
                 >
                   {el.result}
