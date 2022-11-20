@@ -2,7 +2,7 @@ export default[
   {
       "match_id": 429706,
       "status_code": 0,
-      "status": "finished",
+      "status": "notstarted",
       "match_start": "2022-11-21 11:00:00",
       "match_start_iso": "2022-11-21T11:00:00+00:00",
       "minute": null,
@@ -49,8 +49,8 @@ export default[
           }
       },
       "stats": {
-          "home_score": 3,
-          "away_score": 2,
+          "home_score": 0,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": "0-2",
           "et_score": null,
@@ -61,7 +61,7 @@ export default[
   {
       "match_id": 429707,
       "status_code": 0,
-      "status": "finished",
+      "status": "notstarted",
       "match_start": "2022-11-21 14:00:00",
       "match_start_iso": "2022-11-21T14:00:00+00:00",
       "minute": null,
@@ -108,8 +108,8 @@ export default[
           }
       },
       "stats": {
-          "home_score": 3,
-          "away_score": 2,
+          "home_score": 0,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": "0-2",
           "et_score": null,
@@ -126,7 +126,7 @@ export default[
   {
       "match_id": 429708,
       "status_code": 0,
-      "status": "finished",
+      "status": "notstarted",
       "match_start": "2022-11-21 17:00:00",
       "match_start_iso": "2022-11-21T17:00:00+00:00",
       "minute": null,
@@ -174,7 +174,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": "0-2",
           "et_score": null,
@@ -185,7 +185,7 @@ export default[
   {
       "match_id": 429709,
       "status_code": 0,
-      "status": "finished",
+      "status": "notstarted",
       "match_start": "2022-11-21 20:00:00",
       "match_start_iso": "2022-11-21T20:00:00+00:00",
       "minute": null,
@@ -233,7 +233,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": "0-2",
           "et_score": null,
@@ -250,7 +250,7 @@ export default[
   {
       "match_id": 429710,
       "status_code": 0,
-      "status": "finished",
+      "status": "notstarted",
       "match_start": "2022-11-22 11:00:00",
       "match_start_iso": "2022-11-22T11:00:00+00:00",
       "minute": null,
@@ -298,7 +298,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": "0-2",
           "et_score": null,
@@ -309,7 +309,7 @@ export default[
   {
       "match_id": 429711,
       "status_code": 0,
-      "status": "finished",
+      "status": "notstarted",
       "match_start": "2022-11-22 14:00:00",
       "match_start_iso": "2022-11-22T14:00:00+00:00",
       "minute": null,
@@ -357,7 +357,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": "0-2",
           "et_score": null,
@@ -374,7 +374,7 @@ export default[
   {
       "match_id": 429712,
       "status_code": 0,
-      "status": "finished",
+      "status": "notstarted",
       "match_start": "2022-11-22 17:00:00",
       "match_start_iso": "2022-11-22T17:00:00+00:00",
       "minute": null,
@@ -422,7 +422,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": "0-2",
           "et_score": null,
@@ -481,7 +481,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -546,7 +546,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -605,7 +605,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -670,7 +670,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -729,7 +729,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -794,7 +794,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -859,7 +859,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -924,7 +924,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -983,7 +983,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -1042,7 +1042,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -1107,7 +1107,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -1166,7 +1166,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -1231,7 +1231,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -1290,7 +1290,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -1355,7 +1355,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -1420,7 +1420,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -1479,7 +1479,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -1538,7 +1538,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -1603,7 +1603,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -1662,7 +1662,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -1727,7 +1727,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -1786,7 +1786,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -1851,7 +1851,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -1916,7 +1916,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -1975,7 +1975,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -2034,7 +2034,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -2093,7 +2093,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -2158,7 +2158,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -2223,7 +2223,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -2282,7 +2282,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -2347,7 +2347,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -2412,7 +2412,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -2471,7 +2471,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -2530,7 +2530,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -2589,7 +2589,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -2654,7 +2654,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -2719,7 +2719,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -2778,7 +2778,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -2843,7 +2843,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -2908,7 +2908,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -2967,7 +2967,7 @@ export default[
       },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -2998,11 +2998,35 @@ export default[
           "is_current": null
       },
       "referee_id": null,
-      "home_team": null,
-      "away_team": null,
+      "home_team": {
+        "team_id": 56,
+        "name": "Senegal",
+        "short_code": "SEN",
+        "common_name": "",
+        "logo": "https://cdn.sportdataapi.com/images/soccer/teams/100/252.png",
+        "country": {
+            "country_id": 7,
+            "name": "World",
+            "country_code": null,
+            "continent": "World"
+        }
+    },
+      "away_team": {
+        "team_id": 3080,
+        "name": "Netherlands",
+        "short_code": "NED",
+        "common_name": "",
+        "logo": "https://cdn.sportdataapi.com/images/soccer/teams/100/31.png",
+        "country": {
+            "country_id": 7,
+            "name": "World",
+            "country_code": null,
+            "continent": "World"
+        }
+    },
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -3043,7 +3067,7 @@ export default[
       "away_team": null,
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -3084,7 +3108,7 @@ export default[
       "away_team": null,
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -3119,7 +3143,7 @@ export default[
       "away_team": null,
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -3154,7 +3178,7 @@ export default[
       "away_team": null,
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -3195,7 +3219,7 @@ export default[
       "away_team": null,
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -3230,7 +3254,7 @@ export default[
       "away_team": null,
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -3271,7 +3295,7 @@ export default[
       "away_team": null,
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -3306,7 +3330,7 @@ export default[
       "away_team": null,
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -3347,7 +3371,7 @@ export default[
       "away_team": null,
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -3382,7 +3406,7 @@ export default[
       "away_team": null,
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -3417,7 +3441,7 @@ export default[
       "away_team": null,
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -3452,7 +3476,7 @@ export default[
       "away_team": null,
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -3487,7 +3511,7 @@ export default[
       "away_team": null,
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -3522,7 +3546,7 @@ export default[
       "away_team": null,
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
@@ -3563,7 +3587,7 @@ export default[
       "away_team": null,
       "stats": {
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "ht_score": null,
           "ft_score": null,
           "et_score": null,
