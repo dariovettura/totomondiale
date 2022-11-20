@@ -9,7 +9,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import teams from "../../teams/teams";
-import flags from "../../flags/flags";
+import flagss from "../../flags/flags";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import results from "../../calendar/fake_result";
@@ -24,11 +24,14 @@ const LeScommesse: NextPage<Props> = ({ posts, infos }) => {
   const { id } = router.query;
 
   const [myRes, setMyRes] = React.useState<any[]>([]);
-  const [myOffRes, setMyOffRes] = React.useState<any>({});
+  const [myOffRes, setMyOffRes] = React.useState<any|string>({});
   const [name, setName] = React.useState<any>([]);
   const [codicePers, setCodicePers] = React.useState<any>(0);
   const [loader, setLoader] = useState<any>(false);
   const [error, setError] = useState<any>(false);
+ 
+  const flags :any = flagss
+
 
   const groups = ["A", "B", "C", "D", "E", "F", "G", "H"];
   const quarters = [1, 2, 3, 4, 5, 6, 7, 8];

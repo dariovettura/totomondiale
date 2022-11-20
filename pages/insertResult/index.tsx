@@ -13,8 +13,10 @@ import axios from "axios";
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import flags from "../../flags/flags";
+import flagss from "../../flags/flags";
 import teams from "../../teams/teams";
+
+const flags : any = flagss
 
 export default function Insert() {
   const afterSendDialog = React.useRef(null);
@@ -256,7 +258,7 @@ export default function Insert() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          gap: 20,
+          gap: "20px",
           alignItems: "center",
           justifyContent: "center",
         }}
@@ -279,13 +281,13 @@ export default function Insert() {
               <div className="dv-d-flex dv-ai-center" style={{fontWeight:"600"}}>
                 <img
                   style={{ width: "30px", height: "30px" }}
-                  src={flags[el?.home_team?.team_id]}
+                  src={flags[el?.home_team?.team_id ? el?.home_team?.team_id : "0"]}
                   alt=""
                 />{" "}
-                {el?.home_team?.name} - {el?.away_team?.name}{" "}
+                {el?.home_team?.name} - {el?.away_team?.name}{" "} 
                 <img
                   style={{ width: "30px", height: "30px" }}
-                  src={flags[el?.away_team?.team_id]}
+                  src={flags[el?.away_team?.team_id ? el?.away_team?.team_id : "0" ]}
                   alt=""
                 />{" "}
 

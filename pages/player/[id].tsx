@@ -7,16 +7,20 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import teams from "../../teams/teams";
-import flags from "../../flags/flags";
+import flagss from "../../flags/flags";
 
 interface Props {
   posts?: any[];
   infos?: any[];
+
 }
+
 
 const Player: NextPage<Props> = ({ posts, infos }) => {
   const router = useRouter();
   const { id } = router.query;
+
+const flags : any = flagss
 
   const [myRes, setMyRes] = React.useState<any[]>([]);
   const [myOffRes, setMyOffRes] = React.useState<any>({});
@@ -74,7 +78,7 @@ const Player: NextPage<Props> = ({ posts, infos }) => {
 
           {myRes.map((el, i) => (
             <div key={i} style={{ display: "flex", flexDirection: "column" }}>
-              <div>
+              <div className="dv-d-flex dv-f-row dv-gap-10">
                 <img
                   style={{ width: "30px", height: "30px" }}
                   src={flags[el?.home_team?.team_id]}
