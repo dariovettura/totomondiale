@@ -129,6 +129,14 @@ $sides: (top, bottom, left, right);
   }
 }
 
+.nomiClassifica{
+  margin-bottom: 20px;
+  color: #000;
+}
+.nomiClassifica a{
+ text-decoration: none !important;
+  color: #000 !important;
+}
 // @for $i from 1 through 100 {
 //   .w-s#{$i} {
 //     @include generate-responsive()

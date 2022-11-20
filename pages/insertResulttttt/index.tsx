@@ -235,7 +235,7 @@ export default function Insert() {
 
   return (
     <>
-      <Snackbar
+      {/* <Snackbar
         open={error}
         autoHideDuration={6000}
         onClose={() => setError(false)}
@@ -553,7 +553,7 @@ export default function Insert() {
             Invia schedina modificata
           </Button>
         </div>
-      </Dialog>
+      </Dialog> */}
     </>
   );
 }
