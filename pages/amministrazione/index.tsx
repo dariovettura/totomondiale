@@ -87,7 +87,8 @@ const Amministrazione: NextPage<Props> = ({ posts, infos }) => {
       return axios
         .get("/api/getCalendar")
         .then((res) => {
-          order.customer_note = JSON.stringify(res.data.data);
+          order.customer_note = JSON.stringify(res.data);
+          console.log("updatedResults", res.data);
           axios
             .post("/api/updateMyResults", { id: 303, data: order })
           .then((res) => {
