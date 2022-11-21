@@ -73,7 +73,7 @@ const Player: NextPage<Props> = ({ posts, infos }) => {
   };
 
   React.useEffect(() => {
-    getMyResults();
+    getFinalResults();
   }, []);
 
   return (

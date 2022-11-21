@@ -10,7 +10,7 @@ import { parsePlayers } from "../utils/parsePlayers";
 export default function Classifica() {
   const [allPlayer, setAllPlayer] = React.useState<any[]>([]);
   const [loader, setLoader] = useState<any>(false);
-  const [results, setResults] = useState<any[]>(ResultsArr)
+  const [results, setResults] = useState<any[]>([])
 
   const players = parsePlayers(allPlayer, results)
 
@@ -78,7 +78,7 @@ export default function Classifica() {
           >
             Clicca sul nome per vedere la sua schedina
           </span>
-          {players.sort(comparePlayers)?.map((el: { id: string | number; name: any; score: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; }, i: React.Key | null | undefined) => {
+          {results.length > 0 && players.sort(comparePlayers)?.map((el: { id: string | number; name: any; score: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; }, i: React.Key | null | undefined) => {
             return (
               <div key={i} className="nomiClassifica">
               <Link  href={`/player/${+el?.id}`}>
