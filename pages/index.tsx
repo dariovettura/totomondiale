@@ -31,7 +31,7 @@ export default function Classifica() {
       .then((res) => {
         axios.post("/api/getMyResults", { data: 303 }).then((res) => {
           console.log(res);
-          // setResults(JSON.parse(res.data.customer_note));
+           setResults(JSON.parse(res.data.customer_note));
         });
         setAllPlayer(res.data.filter((el: { number: string; }) => el.number !== "303"));
         setLoader(false);
