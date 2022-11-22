@@ -43,6 +43,7 @@ export const parsePlayers = (allPlayer, results) => {
     return el.round.round_id === FINAL;
   });
   let groupsResults = {};
+
   groupsCal.forEach((el) => {
     let result = "0";
     if (el.status === "finished") {
@@ -105,6 +106,7 @@ export const parsePlayers = (allPlayer, results) => {
   const players = allPlayer.map((player) => {
     const bets = JSON.parse(player?.customer_note);
     let groupsBets = {};
+    let groupsBetsResults = {};
     bets?.myResult.forEach((b) => {
       groupsBets[b.match_id] = b.result;
     });
@@ -161,6 +163,13 @@ export const parsePlayers = (allPlayer, results) => {
       if (groupsBets[key] === groupsResults[key]) {
         score += pointValues[GROUPS];
         winningBets++;
+        groupsBetsResults[key] = "success";
+      } else {
+        if(["1", "2", "x"].includes(groupsResults[key])) {
+          groupsBetsResults[key] = "danger";
+        } else {
+          groupsBetsResults[key] = "none";
+        }
       }
     });
     Object.keys(poBets).forEach((key) => {
@@ -186,6 +195,7 @@ export const parsePlayers = (allPlayer, results) => {
       name: player.billing?.first_name,
       id: player.id,
       groupsBets,
+      groupsBetsResults,
       poBets,
       score,
       winningBets,
