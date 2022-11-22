@@ -16,20 +16,10 @@ export default function Classifica() {
   const [allPlayer, setAllPlayer] = React.useState<any[]>([]);
   const [loader, setLoader] = useState<any>(false);
   const [results, setResults] = useState<any[]>([]);
-  let lastPlayed = 2;
-  results.forEach((r, i) => {
-    if (r.status === "finished") {
-      lastPlayed = i;
-    }
-  });
-  const [visibleColumns, setVisibleColumns] = useState<any[]>([
-    lastPlayed,
-    lastPlayed + 1,
-    lastPlayed + 2,
-  ]);
+
+  const [visibleColumns, setVisibleColumns] = useState<any[]>([0, 1, 2]);
 
   const players = parsePlayers(allPlayer, results);
-  console.log("players", players);
   console.log("results", results);
 
   function comparePlayers(a: any, b: any) {
@@ -48,7 +38,15 @@ export default function Classifica() {
       .get("/api/getAllSchedine")
       .then((res) => {
         axios.post("/api/getMyResults", { data: 303 }).then((res) => {
-          setResults(JSON.parse(res.data.customer_note));
+          const _results = JSON.parse(res.data.customer_note);
+          setResults(_results);
+          let lastPlayed = 2;
+          _results.forEach((r: any, i: any) => {
+            if (r.status === "finished") {
+              lastPlayed = i;
+            }
+          });
+          setVisibleColumns([lastPlayed, lastPlayed + 1, lastPlayed + 2]);
         });
         setAllPlayer(
           res.data.filter((el: { number: string }) => el.number !== "303")
@@ -82,7 +80,6 @@ export default function Classifica() {
           width: "100vw",
           display: "flex",
           flexDirection: "column",
-          gap: "20px",
           alignItems: "center",
           justifyContent: "center",
           marginTop: "20px",
@@ -100,20 +97,37 @@ export default function Classifica() {
         >
           Clicca sul nome per vedere la sua schedina
         </span>
-        <ButtonGroup>
-          <Button
-            disabled={visibleColumns.includes(0)}
-            onClick={() => setVisibleColumns(visibleColumns.map((e) => e - 1))}
-          >
-            {" < "}
-          </Button>
-          <Button
-            onClick={() => setVisibleColumns(visibleColumns.map((e) => e + 1))}
-          >
-            {" > "}
-          </Button>
-        </ButtonGroup>
-        <Table size="sm" style={{ fontSize: "12px" }} responsive>
+        <div
+          style={{
+            width: "100vw",
+            marginBottom: "-5vw",
+          }}
+          className="d-flex justify-content-between"
+        >
+          <div className="">
+            <Button
+              disabled={visibleColumns.includes(0)}
+              color="primary"
+              onClick={() =>
+                setVisibleColumns(visibleColumns.map((e) => e - 1))
+              }
+            >
+              {" < "}
+            </Button>
+          </div>
+          <div className="">
+            <Button
+              disabled={visibleColumns.includes(results?.length - 1)}
+              color="primary"
+              onClick={() =>
+                setVisibleColumns(visibleColumns.map((e) => e + 1))
+              }
+            >
+              {" > "}
+            </Button>
+          </div>
+        </div>
+        <Table size="sm" style={{ fontSize: "10px" }} responsive striped>
           <thead>
             <tr>
               <th>#</th>
@@ -123,29 +137,36 @@ export default function Classifica() {
                 const awayTeamId = results[col]?.away_team?.team_id as string;
                 return (
                   <th key={col}>
-                    <span>{results[col]?.home_team?.short_code}</span>
-                    <img
-                      style={{ width: "12px", height: "12px" }}
-                      src={flags[homeTeamId as keyof typeof flags]}
-                      alt="flag"
-                    />
-                    {results[col]?.away_team?.short_code}
-                    <img
-                      style={{ width: "12px", height: "12px" }}
-                      src={flags[awayTeamId as keyof typeof flags]}
-                      alt="flag"
-                    />
+                    <div>
+                      <img
+                        style={{ width: "10px", height: "10px" }}
+                        src={flags[homeTeamId as keyof typeof flags]}
+                        alt="flag"
+                      />
+                      <span>{results[col]?.home_team?.short_code}</span>
+                    </div>
+                    <div>
+                      <img
+                        style={{ width: "10px", height: "10px" }}
+                        src={flags[awayTeamId as keyof typeof flags]}
+                        alt="flag"
+                      />
+                      <span>{results[col]?.away_team?.short_code}</span>
+                    </div>
+                    <div>
+                      {"("}
+                      {results[col]?.status == "finished" && (
+                        <b>{results[col]?.stats?.home_score}</b>
+                      )}
+                      {"-"}
+                      {results[col]?.status == "finished" && (
+                        <b>{results[col]?.stats?.away_score}</b>
+                      )}
+                      {")"}
+                    </div>
                   </th>
                 );
               })}
-              {/* {results.map((r, i) => (
-                <th
-                  key={r.match_id}
-                  className={visibleColumns.includes(i) ? "d-inline" : "d-none"}
-                >
-                  {r.home_team?.short_code}-{r.away_team?.short_code}
-                </th>
-              ))} */}
               <th>Punti</th>
             </tr>
           </thead>
@@ -161,30 +182,20 @@ export default function Classifica() {
                       </Link>
                     </td>
                     {visibleColumns.map((col) => (
-                      <td key={col}>
+                      <td className="h6" key={col}>
                         <span
                           className={`text-${
                             el?.groupsBetsResults[
                               Object.keys(el?.groupsBetsResults)[col]
                             ]
-                          }`}
+                          } text-uppercase`}
                         >
                           {el?.groupsBets[Object.keys(el?.groupsBets)[col]]}
                         </span>
                       </td>
                     ))}
-                    {/* {Object.values(el.groupsBets).map((bet: any, i) => (
-                      <td
-                        key={i}
-                        className={
-                          visibleColumns.includes(i) ? "d-inline" : "d-none"
-                        }
-                      >
-                        {bet}
-                      </td>
-                    ))} */}
                     <td>
-                      <b>{el.score}</b>
+                      <b className="h5">{el.score}</b>
                     </td>
                   </tr>
                 );
