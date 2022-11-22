@@ -177,7 +177,7 @@ export default function Classifica() {
                   <tr key={i}>
                     <th scope="row">{i + 1}</th>
                     <td className="h6">
-                      <Link href={`/player/${+el?.id}`}>
+                      <Link href={`/player/${+el?.id}`} style={{textDecoration: "none"}}>
                         {el.name || `Player${el.id}`}
                       </Link>
                     </td>
