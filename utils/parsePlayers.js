@@ -111,6 +111,48 @@ export const parsePlayers = (allPlayer, results) => {
       groupsBets[b.match_id] = b.result;
     });
 
+    let gironi = {};
+    let gironiResults = {};
+    gironi["A"] = [
+      bets?.myPlayOffResults?.gironeA1,
+      bets?.myPlayOffResults?.gironeA2,
+    ];
+    gironiResults["A"] = gironi["A"].filter(value => poResults[EIGHTS].includes(value)).length * pointValues[EIGHTS] 
+    gironi["B"] = [
+      bets?.myPlayOffResults?.gironeB1,
+      bets?.myPlayOffResults?.gironeB2,
+    ];
+    gironiResults["B"] = gironi["B"].filter(value => poResults[EIGHTS].includes(value)).length * pointValues[EIGHTS]
+    gironi["C"] = [
+      bets?.myPlayOffResults?.gironeC1,
+      bets?.myPlayOffResults?.gironeC2,
+    ];
+    gironiResults["C"] = gironi["C"].filter(value => poResults[EIGHTS].includes(value)).length * pointValues[EIGHTS]
+    gironi["D"] = [
+      bets?.myPlayOffResults?.gironeD1,
+      bets?.myPlayOffResults?.gironeD2,
+    ];
+    gironiResults["D"] = gironi["D"].filter(value => poResults[EIGHTS].includes(value)).length * pointValues[EIGHTS]
+    gironi["E"] = [
+      bets?.myPlayOffResults?.gironeE1,
+      bets?.myPlayOffResults?.gironeE2,
+    ];
+    gironiResults["E"] = gironi["E"].filter(value => poResults[EIGHTS].includes(value)).length * pointValues[EIGHTS]
+    gironi["F"] = [
+      bets?.myPlayOffResults?.gironeF1,
+      bets?.myPlayOffResults?.gironeF2,
+    ];
+    gironiResults["F"] = gironi["F"].filter(value => poResults[EIGHTS].includes(value)).length * pointValues[EIGHTS]
+    gironi["G"] = [
+      bets?.myPlayOffResults?.gironeG1,
+      bets?.myPlayOffResults?.gironeG2,
+    ];
+    gironiResults["G"] = gironi["G"].filter(value => poResults[EIGHTS].includes(value)).length * pointValues[EIGHTS]
+    gironi["H"] = [
+      bets?.myPlayOffResults?.gironeH1,
+      bets?.myPlayOffResults?.gironeH2,
+    ];
+    gironiResults["H"] = gironi["H"].filter(value => poResults[EIGHTS].includes(value)).length * pointValues[EIGHTS]
     let poBets = {};
     poBets[EIGHTS] = [
       bets?.myPlayOffResults?.gironeA1,
@@ -172,22 +214,29 @@ export const parsePlayers = (allPlayer, results) => {
         }
       }
     });
+    const poScores = {}
     Object.keys(poBets).forEach((key) => {
       if (![""+WINNER, BOMBER].includes(key)) {
+        poScores[key] = 0;
         poBets[key].forEach((b) => {
           if (poResults[key].includes(b)) {
             score += 1 * pointValues[key];
+            poScores[key] += 1 * pointValues[key];
             winningBets++;
           }
         });
       }
     });
+    poScores[WINNER] = 0;
     if (poBets[WINNER] === poResults[WINNER]) {
       score += pointValues[WINNER];
+      poScores[WINNER] = pointValues[WINNER];
       winningBets++;
     }
+    poScores[BOMBER] = 0;
     if (poBets[BOMBER] === poResults[BOMBER]) {
       score += pointValues[BOMBER];
+      poScores[BOMBER] = pointValues[BOMBER];
       winningBets++;
     }
 
@@ -197,8 +246,11 @@ export const parsePlayers = (allPlayer, results) => {
       groupsBets,
       groupsBetsResults,
       poBets,
+      poScores,
       score,
       winningBets,
+      gironi,
+      gironiResults
     };
   });
   return players;
