@@ -10,6 +10,7 @@ import { parsePlayers } from "../utils/parsePlayers";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Table, Button, ButtonGroup } from "reactstrap";
 import flags from "../flags/flags";
+import teams from "../teams/teams";
 import Image from "next/image";
 import { parseMatches } from "../utils/parseMatches";
 import { parsePlayoffResults } from "../utils/parsePlayoffResults";
@@ -209,20 +210,23 @@ export default function Classifica() {
                   console.log("groupColumn", groupColumn);
                   return (
                     <th key={col}>
-                      <div>
+                      {groupColumn[0] && <div>
                         <img
                           style={{ width: "16px", height: "16px" }}
                           src={flags[groupColumn[0] as keyof typeof flags]}
                           alt="flag"
                         />
-                        {"-"}
+                        <span>{teams.find(team => team.team_id == groupColumn[0])?.short_code}</span>
+                      </div>}
+                      {groupColumn[1] && <div>
                         <img
                           style={{ width: "16px", height: "16px" }}
                           src={flags[groupColumn[1] as keyof typeof flags]}
                           alt="flag"
                           className="ml-2"
                         />
-                      </div>
+                        <span>{teams.find(team => team.team_id == groupColumn[1])?.short_code}</span>
+                      </div>}
                       <div>{"Group " + colLetter}</div>
                     </th>
                   );
@@ -381,8 +385,8 @@ export default function Classifica() {
                         return (
                           <td className="h6" key={col}>
                             <div>{groupPoints || 0}</div>
-                            <div>
                               {groupColumn[0] && (
+                              <div>
                                 <img
                                   style={{ width: "16px", height: "16px" }}
                                   src={
@@ -390,9 +394,11 @@ export default function Classifica() {
                                   }
                                   alt="flag"
                                 />
+                                <span className={poResults[colLetter].includes(groupColumn[0]) ? "text-success" : ""}>{teams.find(team => team.team_id == groupColumn[0])?.short_code}</span>
+                              </div>
                               )}
-                              {"-"}
                               {groupColumn[1] && (
+                              <div>
                                 <img
                                   style={{ width: "16px", height: "16px" }}
                                   src={
@@ -400,8 +406,9 @@ export default function Classifica() {
                                   }
                                   alt="flag"
                                 />
+                                <span className={poResults[colLetter].includes(groupColumn[1]) ? "text-success" : ""}>{teams.find(team => team.team_id == groupColumn[1])?.short_code}</span>
+                              </div>
                               )}
-                            </div>
                           </td>
                         );
                       } else if (col === 56) {
