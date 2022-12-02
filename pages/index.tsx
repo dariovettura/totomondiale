@@ -100,6 +100,33 @@ export default function Classifica() {
     if (node !== null) getClassifica();
   }, []);
 
+  const renderTeams = (rows: any, cols: any, round: any, teamIds: any, isRes: boolean, imgSize: string, fontSize: number ) => {
+    return rows.map((ind:any) => (
+      <div style={{ marginTop: "-4px", marginBottom: "-4px" }} key={ind}>
+        {teamIds.slice(ind * cols, (ind + 1) * cols).map((tid: any) => (
+          <span key={tid}>
+            <img
+              style={{ width: imgSize, height: imgSize }}
+              src={flags[tid as keyof typeof flags]}
+              alt="flag"
+            />
+            {/* {create a span with font-size 8} */}
+            <span
+              className={
+                isRes && poResults[round].includes(tid)
+                  ? "text-success"
+                  : ""
+              }
+              style={{ fontSize }}
+            >
+              {teams.find((team) => team.team_id == tid)?.short_code}
+            </span>
+          </span>
+        ))}
+      </div>
+    ));
+  };
+
   return (
     <>
       <Backdrop
@@ -210,107 +237,67 @@ export default function Classifica() {
                   console.log("groupColumn", groupColumn);
                   return (
                     <th key={col}>
-                      {groupColumn[0] && <div>
-                        <img
-                          style={{ width: "16px", height: "16px" }}
-                          src={flags[groupColumn[0] as keyof typeof flags]}
-                          alt="flag"
-                        />
-                        <span>{teams.find(team => team.team_id == groupColumn[0])?.short_code}</span>
-                      </div>}
-                      {groupColumn[1] && <div>
-                        <img
-                          style={{ width: "16px", height: "16px" }}
-                          src={flags[groupColumn[1] as keyof typeof flags]}
-                          alt="flag"
-                          className="ml-2"
-                        />
-                        <span>{teams.find(team => team.team_id == groupColumn[1])?.short_code}</span>
-                      </div>}
+                      {groupColumn[0] && (
+                        <div>
+                          <img
+                            style={{ width: "16px", height: "16px" }}
+                            src={flags[groupColumn[0] as keyof typeof flags]}
+                            alt="flag"
+                          />
+                          <span>
+                            {
+                              teams.find(
+                                (team) => team.team_id == groupColumn[0]
+                              )?.short_code
+                            }
+                          </span>
+                        </div>
+                      )}
+                      {groupColumn[1] && (
+                        <div>
+                          <img
+                            style={{ width: "16px", height: "16px" }}
+                            src={flags[groupColumn[1] as keyof typeof flags]}
+                            alt="flag"
+                            className="ml-2"
+                          />
+                          <span>
+                            {
+                              teams.find(
+                                (team) => team.team_id == groupColumn[1]
+                              )?.short_code
+                            }
+                          </span>
+                        </div>
+                      )}
                       <div>{"Group " + colLetter}</div>
                     </th>
                   );
                 } else if (col === 56) {
                   return (
                     <th key={col}>
-                      <div>
-                        {poResults[QUARTERS].slice(0, 4).map((tid: any) => (
-                          <img
-                            key={tid}
-                            style={{ width: "12px", height: "12px" }}
-                            src={flags[tid as keyof typeof flags]}
-                            alt="flag"
-                          />
-                        ))}
-                      </div>
-                      <div>
-                        {poResults[QUARTERS].slice(4, 8).map((tid: any) => (
-                          <img
-                            key={tid}
-                            style={{ width: "12px", height: "12px" }}
-                            src={flags[tid as keyof typeof flags]}
-                            alt="flag"
-                          />
-                        ))}
-                      </div>
+                      <>{renderTeams([0, 1, 2, 3], 2, QUARTERS, poResults[QUARTERS], false, "12px", 9)}</>
                       <div>{"Quarti"}</div>
                     </th>
                   );
                 } else if (col === 57) {
                   return (
                     <th key={col}>
-                      <div>
-                        {poResults[SEMIS].slice(0, 2).map((tid: any) => (
-                          <img
-                            key={tid}
-                            style={{ width: "14px", height: "14px" }}
-                            src={flags[tid as keyof typeof flags]}
-                            alt="flag"
-                          />
-                        ))}
-                      </div>
-                      <div>
-                        {poResults[SEMIS].slice(2, 4).map((tid: any) => (
-                          <img
-                            key={tid}
-                            style={{ width: "14px", height: "14px" }}
-                            src={flags[tid as keyof typeof flags]}
-                            alt="flag"
-                          />
-                        ))}
-                      </div>
+                      <>{renderTeams([0, 1, 2, 3], 1, SEMIS, poResults[SEMIS], false, "14px", 10)}</>
                       <div>{"Semi"}</div>
                     </th>
                   );
                 } else if (col === 58) {
                   return (
                     <th key={col}>
-                      <div>
-                        {poResults[THIRDS].slice(0, 2).map((tid: any) => (
-                          <img
-                            key={tid}
-                            style={{ width: "14px", height: "14px" }}
-                            src={flags[tid as keyof typeof flags]}
-                            alt="flag"
-                          />
-                        ))}
-                      </div>
+                      <>{renderTeams([0, 1], 1, THIRDS, poResults[THIRDS], false, "16px", 11)}</>
                       <div>{"Terzo"}</div>
                     </th>
                   );
                 } else if (col === 59) {
                   return (
                     <th key={col}>
-                      <div>
-                        {poResults[FINAL].slice(0, 2).map((tid: any) => (
-                          <img
-                            key={tid}
-                            style={{ width: "14px", height: "14px" }}
-                            src={flags[tid as keyof typeof flags]}
-                            alt="flag"
-                          />
-                        ))}
-                      </div>
+                      <>{renderTeams([0, 1], 1, FINAL, poResults[FINAL], false, "18px", 12)}</>
                       <div>{"Finale"}</div>
                     </th>
                   );
@@ -320,7 +307,7 @@ export default function Classifica() {
                       <div>
                         {poResults[WINNER] && (
                           <img
-                            style={{ width: "18px", height: "18px" }}
+                            style={{ width: "20px", height: "20px" }}
                             src={flags[poResults[WINNER] as keyof typeof flags]}
                             alt="flag"
                           />
@@ -335,8 +322,14 @@ export default function Classifica() {
                       <div>
                         {poResults[BOMBER as keyof typeof poResults] && (
                           <img
-                            style={{ width: "18px", height: "18px" }}
-                            src={flags[poResults[BOMBER as keyof typeof poResults] as keyof typeof flags]}
+                            style={{ width: "20px", height: "20px" }}
+                            src={
+                              flags[
+                                poResults[
+                                  BOMBER as keyof typeof poResults
+                                ] as keyof typeof flags
+                              ]
+                            }
                             alt="flag"
                           />
                         )}
@@ -385,7 +378,7 @@ export default function Classifica() {
                         return (
                           <td className="h6" key={col}>
                             <div>{groupPoints || 0}</div>
-                              {groupColumn[0] && (
+                            {groupColumn[0] && (
                               <div>
                                 <img
                                   style={{ width: "16px", height: "16px" }}
@@ -394,10 +387,24 @@ export default function Classifica() {
                                   }
                                   alt="flag"
                                 />
-                                <span className={poResults[colLetter].includes(groupColumn[0]) ? "text-success" : ""}>{teams.find(team => team.team_id == groupColumn[0])?.short_code}</span>
+                                <span
+                                  className={
+                                    poResults[colLetter].includes(
+                                      groupColumn[0]
+                                    )
+                                      ? "text-success"
+                                      : ""
+                                  }
+                                >
+                                  {
+                                    teams.find(
+                                      (team) => team.team_id == groupColumn[0]
+                                    )?.short_code
+                                  }
+                                </span>
                               </div>
-                              )}
-                              {groupColumn[1] && (
+                            )}
+                            {groupColumn[1] && (
                               <div>
                                 <img
                                   style={{ width: "16px", height: "16px" }}
@@ -406,99 +413,59 @@ export default function Classifica() {
                                   }
                                   alt="flag"
                                 />
-                                <span className={poResults[colLetter].includes(groupColumn[1]) ? "text-success" : ""}>{teams.find(team => team.team_id == groupColumn[1])?.short_code}</span>
+                                <span
+                                  className={
+                                    poResults[colLetter].includes(
+                                      groupColumn[1]
+                                    )
+                                      ? "text-success"
+                                      : ""
+                                  }
+                                >
+                                  {
+                                    teams.find(
+                                      (team) => team.team_id == groupColumn[1]
+                                    )?.short_code
+                                  }
+                                </span>
                               </div>
-                              )}
+                            )}
                           </td>
                         );
                       } else if (col === 56) {
                         return (
                           <th key={col}>
-                            <div>{el?.poScores[QUARTERS] || 0}</div>
-                            <div>
-                              {el?.poBets[QUARTERS].slice(0, 4).map(
-                                (tid: any) => (
-                                  <img
-                                    key={tid}
-                                    style={{ width: "12px", height: "12px" }}
-                                    src={flags[tid as keyof typeof flags]}
-                                    alt="flag"
-                                  />
-                                )
-                              )}
+                            <div className="h6 text-center">
+                              {el?.poScores[QUARTERS] || 0}
                             </div>
-                            <div>
-                              {el?.poBets[QUARTERS].slice(4, 8).map(
-                                (tid: any) => (
-                                  <img
-                                    key={tid}
-                                    style={{ width: "12px", height: "12px" }}
-                                    src={flags[tid as keyof typeof flags]}
-                                    alt="flag"
-                                  />
-                                )
-                              )}
-                            </div>
+                            <>{renderTeams([0, 1, 2, 3], 2, QUARTERS, el?.poBets[QUARTERS], true, "12px", 9)}</>
                           </th>
                         );
                       } else if (col === 57) {
                         return (
                           <th key={col}>
-                            <div>{el?.poScores[SEMIS] || 0}</div>
-                            <div>
-                              {el?.poBets[SEMIS].slice(0, 2).map((tid: any) => (
-                                <img
-                                  key={tid}
-                                  style={{ width: "14px", height: "14px" }}
-                                  src={flags[tid as keyof typeof flags]}
-                                  alt="flag"
-                                />
-                              ))}
+                            <div className="h6 text-center">
+                              {el?.poScores[SEMIS] || 0}
                             </div>
-                            <div>
-                              {el?.poBets[SEMIS].slice(2, 4).map((tid: any) => (
-                                <img
-                                  key={tid}
-                                  style={{ width: "14px", height: "14px" }}
-                                  src={flags[tid as keyof typeof flags]}
-                                  alt="flag"
-                                />
-                              ))}
-                            </div>
+                            <>{renderTeams([0, 1, 2, 3], 1, SEMIS, el?.poBets[SEMIS], true, "14px", 10)}</>
                           </th>
                         );
                       } else if (col === 58) {
                         return (
                           <th key={col}>
-                            <div>{el?.poScores[THIRDS] || 0}</div>
-                            <div>
-                              {el?.poBets[THIRDS].slice(0, 2).map(
-                                (tid: any) => (
-                                  <img
-                                    key={tid}
-                                    style={{ width: "14px", height: "14px" }}
-                                    src={flags[tid as keyof typeof flags]}
-                                    alt="flag"
-                                  />
-                                )
-                              )}
+                            <div className="h6 text-center">
+                              {el?.poScores[THIRDS] || 0}
                             </div>
+                            <>{renderTeams([0, 1], 1, THIRDS, el?.poBets[THIRDS], true, "16px", 11)}</>
                           </th>
                         );
                       } else if (col === 59) {
                         return (
                           <th key={col}>
-                            <div>{el?.poScores[FINAL] || 0}</div>
-                            <div>
-                              {el?.poBets[FINAL].slice(0, 2).map((tid: any) => (
-                                <img
-                                  key={tid}
-                                  style={{ width: "14px", height: "14px" }}
-                                  src={flags[tid as keyof typeof flags]}
-                                  alt="flag"
-                                />
-                              ))}
+                            <div className="h6 text-center">
+                              {el?.poScores[FINAL] || 0}
                             </div>
+                            <>{renderTeams([0, 1], 1, FINAL, el?.poBets[FINAL], true, "18px", 12)}</>
                           </th>
                         );
                       } else if (col === 60) {
@@ -508,8 +475,12 @@ export default function Classifica() {
                             <div>
                               {el?.poBets[WINNER] && (
                                 <img
-                                  style={{ width: "18px", height: "18px" }}
-                                  src={flags[el?.poBets[WINNER] as keyof typeof flags]}
+                                  style={{ width: "20px", height: "20px" }}
+                                  src={
+                                    flags[
+                                      el?.poBets[WINNER] as keyof typeof flags
+                                    ]
+                                  }
                                   alt="flag"
                                 />
                               )}
@@ -523,8 +494,12 @@ export default function Classifica() {
                             <div>
                               {el?.poBets[BOMBER] && (
                                 <img
-                                  style={{ width: "18px", height: "18px" }}
-                                  src={flags[el?.poBets[BOMBER] as keyof typeof flags]}
+                                  style={{ width: "20px", height: "20px" }}
+                                  src={
+                                    flags[
+                                      el?.poBets[BOMBER] as keyof typeof flags
+                                    ]
+                                  }
                                   alt="flag"
                                 />
                               )}
