@@ -162,7 +162,9 @@ export default function Classifica() {
         <div
           style={{
             width: "100vw",
-            marginBottom: "-5vw",
+           padding:"10px",
+           position:"sticky",
+           top:"60px"
           }}
           className="d-flex justify-content-between"
         >
@@ -174,7 +176,7 @@ export default function Classifica() {
                 setVisibleColumns(visibleColumns.map((e) => e - 1))
               }
             >
-              {" < "}
+              {" ← "}
             </Button>
           </div>
           <div className="">
@@ -185,7 +187,7 @@ export default function Classifica() {
                 setVisibleColumns(visibleColumns.map((e) => e + 1))
               }
             >
-              {" > "}
+              {" → "}
             </Button>
           </div>
         </div>
