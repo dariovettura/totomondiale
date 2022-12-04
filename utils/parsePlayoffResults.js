@@ -1,4 +1,4 @@
-export const parsePlayoffResults = (results) => {
+export const parsePlayoffResults = (results, manualResults) => {
   // stage_ids
   const GROUPS = 6;
   // round_ids
@@ -113,6 +113,24 @@ export const parsePlayoffResults = (results) => {
       }
     }
   });
+
+  console.log("pooooooResults", poResults, manualResults);
+  if (manualResults) {
+    if (Array.isArray(manualResults[QUARTERS]))
+      poResults[QUARTERS] = [...new Set([...poResults[QUARTERS], ...manualResults[QUARTERS]])].slice(0, 8)
+    if (Array.isArray(manualResults[SEMIS]))
+      poResults[SEMIS] = [...new Set([...poResults[SEMIS], ...manualResults[SEMIS]])].slice(0, 4)
+    if (Array.isArray(manualResults[THIRDS]))
+      poResults[THIRDS] = [...new Set([...poResults[THIRDS], ...manualResults[THIRDS]])].slice(0, 2)
+    if (Array.isArray(manualResults[FINAL]))
+      poResults[FINAL] = [...new Set([...poResults[FINAL], ...manualResults[FINAL]])].slice(0, 2)
+
+    poResults[WINNER] ||= manualResults[WINNER]
+    poResults[BOMBER] ||= manualResults[BOMBER]
+  }
+
+  console.log("pooooooResults", poResults, manualResults);
+
 
   return poResults;
 
