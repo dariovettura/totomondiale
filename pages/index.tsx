@@ -295,7 +295,7 @@ export default function Classifica() {
                 } else if (col === 56) {
                   return (
                     <th key={col}>
-                      <>{renderTeams([0, 1, 2, 3], 2, QUARTERS, poResults[QUARTERS], false, "12px", 9)}</>
+                      <>{renderTeams([0, 1, 2, 3, 4 ,5 ,6 ,7 , 8], 1, QUARTERS, poResults[QUARTERS], false, "12px", 9)}</>
                       <div>{`Quarti(${pointValues[QUARTERS]}pt)`} </div>
                     </th>
                   );
@@ -457,7 +457,7 @@ export default function Classifica() {
                             <div className="h6 text-center">
                               {el?.poScores[QUARTERS] || 0}
                             </div>
-                            <>{renderTeams([0, 1, 2, 3], 2, QUARTERS, el?.poBets[QUARTERS], true, "12px", 9)}</>
+                            <>{renderTeams([0, 1, 2, 3, 4 ,5 ,6 ,7 , 8], 1, QUARTERS, el?.poBets[QUARTERS], true, "12px", 9)}</>
                           </th>
                         );
                       } else if (col === 57) {
