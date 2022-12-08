@@ -21,6 +21,9 @@ export default function Classifica() {
   const [results, setResults] = useState<any[]>([]);
   const [grResults, setGrResults] = useState<any[]>([]);
   const [poResults, setPoResults] = useState<any[]>([]);
+  const [manualResults, setManualResults] = useState<any>({});
+
+  console.log("manualResults", manualResults);
   const colGroup: any = {
     48: "A",
     49: "B",
@@ -43,11 +46,22 @@ export default function Classifica() {
   // id bomber
   const BOMBER = "bomber";
 
+  const pointValues = {
+    [GROUPS]: 1,
+    [EIGHTS]: 2,
+    [QUARTERS]: 2,
+    [SEMIS]: 2,
+    [THIRDS]: 6,
+    [FINAL]: 8,
+    [WINNER]: 12,
+    [BOMBER]: 5,
+  };
+
   const [visibleColumns, setVisibleColumns] = useState<any[]>([0, 1, 2]);
 
-  const players = parsePlayers(allPlayer, results);
+  const players = parsePlayers(allPlayer, results, manualResults);
 
-  console.log("players", players);
+  console.log("poResults", poResults);
 
   function comparePlayers(a: any, b: any) {
     if (a.score > b.score) {
@@ -69,18 +83,21 @@ export default function Classifica() {
       .then((res) => {
         axios.post("/api/getMyResults", { data: 303 }).then((res) => {
           let _results = JSON.parse(res.data.customer_note); // parsedMatches; 
+          console.log("results", _results);
           setResults(_results);
-          let _poResults: any = parsePlayoffResults(_results);
+          let manual = {};
+          if(_results.length > 0 && _results[0].hasOwnProperty("manualResults")) {
+            manual = _results[0].manualResults;
+            setManualResults(manual);
+          }
+          let _poResults: any = parsePlayoffResults(_results, manual);
           setPoResults(_poResults);
           let _grResults: any = _results.slice(0, 48);
+          console.log("_grResults", _grResults);
           setGrResults(_grResults);
 
-          let lastPlayed = 2;
-          _grResults.forEach((r: any, i: any) => {
-            if (r.status === "finished") {
-              lastPlayed = i;
-            }
-          });
+          let lastPlayed = 57;
+          
           setVisibleColumns([lastPlayed, lastPlayed + 1, lastPlayed + 2]);
         });
         setAllPlayer(
@@ -278,29 +295,29 @@ export default function Classifica() {
                 } else if (col === 56) {
                   return (
                     <th key={col}>
-                      <>{renderTeams([0, 1, 2, 3], 2, QUARTERS, poResults[QUARTERS], false, "12px", 9)}</>
-                      <div>{"Quarti"}</div>
+                      <>{renderTeams([0, 1, 2, 3, 4 ,5 ,6 ,7 , 8], 1, QUARTERS, poResults[QUARTERS], false, "12px", 9)}</>
+                      <div>{`Quarti(${pointValues[QUARTERS]}pt)`} </div>
                     </th>
                   );
                 } else if (col === 57) {
                   return (
                     <th key={col}>
                       <>{renderTeams([0, 1, 2, 3], 1, SEMIS, poResults[SEMIS], false, "14px", 10)}</>
-                      <div>{"Semi"}</div>
+                      <div>{`Semi(${pointValues[SEMIS]}pt)`} </div>
                     </th>
                   );
                 } else if (col === 58) {
                   return (
                     <th key={col}>
                       <>{renderTeams([0, 1], 1, THIRDS, poResults[THIRDS], false, "16px", 11)}</>
-                      <div>{"Terzo"}</div>
+                      <div>{`Terzo(${pointValues[THIRDS]}pt)`} </div>
                     </th>
                   );
                 } else if (col === 59) {
                   return (
                     <th key={col}>
                       <>{renderTeams([0, 1], 1, FINAL, poResults[FINAL], false, "18px", 12)}</>
-                      <div>{"Finale"}</div>
+                      <div>{`Finale(${pointValues[FINAL]}pt)`} </div>
                     </th>
                   );
                 } else if (col === 60) {
@@ -315,7 +332,7 @@ export default function Classifica() {
                           />
                         )}
                       </div>
-                      <div>{"Winner"}</div>
+                      <div>{`Winner(${pointValues[WINNER]}pt)`} </div>
                     </th>
                   );
                 } else if (col === 61) {
@@ -336,7 +353,7 @@ export default function Classifica() {
                           />
                         )}
                       </div>
-                      <div>{"Bomber"}</div>
+                      <div>{`Bomber(${pointValues[BOMBER]}pt)`} </div>
                     </th>
                   );
                 }
@@ -440,7 +457,7 @@ export default function Classifica() {
                             <div className="h6 text-center">
                               {el?.poScores[QUARTERS] || 0}
                             </div>
-                            <>{renderTeams([0, 1, 2, 3], 2, QUARTERS, el?.poBets[QUARTERS], true, "12px", 9)}</>
+                            <>{renderTeams([0, 1, 2, 3, 4 ,5 ,6 ,7 , 8], 1, QUARTERS, el?.poBets[QUARTERS], true, "12px", 9)}</>
                           </th>
                         );
                       } else if (col === 57) {
