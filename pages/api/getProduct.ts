@@ -9,8 +9,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const CK = "ck_c6180d6359806585390a5b0fbaa4bf95200cb467";
-  const CS = "cs_3d1ee5ffdd87b0ee55ff646aa3ff39ffe105f1c4";
+  const CK = process.env.NEXT_PUBLIC_CK;
+  const CS = process.env.NEXT_PUBLIC_CS;
   const url =
     `https://portfoli.altervista.org/wp-json/wc/v2/products?&_embed&per_page=100&consumer_key=` +
     CK +
