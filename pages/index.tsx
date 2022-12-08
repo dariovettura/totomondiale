@@ -96,7 +96,7 @@ export default function Classifica() {
           console.log("_grResults", _grResults);
           setGrResults(_grResults);
 
-          let lastPlayed = 56;
+          let lastPlayed = 57;
           
           setVisibleColumns([lastPlayed, lastPlayed + 1, lastPlayed + 2]);
         });
