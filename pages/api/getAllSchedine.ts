@@ -12,10 +12,10 @@ export default async function handler(
   const CK = process.env.NEXT_PUBLIC_CK;
   const CS = process.env.NEXT_PUBLIC_CS;
   const url =
-    `https://portfoli.altervista.org/wp-json/wc/v2/orders?per_page=100&consumer_key=` +
-    CK +
-    "&consumer_secret=" +
-    CS;
+    `https://portfoli.altervista.org/wp-json/wc/v2/orders?per_page=100&consumer_key=
+    ${CK}
+    &consumer_secret=
+    ${CS}`;
 
   const result = await axios.get(url);
 
