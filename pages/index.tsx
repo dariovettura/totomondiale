@@ -23,7 +23,6 @@ export default function Classifica() {
   const [poResults, setPoResults] = useState<any[]>([]);
   const [manualResults, setManualResults] = useState<any>({});
 
-  console.log("manualResults", manualResults);
   const colGroup: any = {
     48: "A",
     49: "B",
@@ -61,8 +60,6 @@ export default function Classifica() {
 
   const players = parsePlayers(allPlayer, results, manualResults);
 
-  console.log("poResults", poResults);
-
   function comparePlayers(a: any, b: any) {
     if (a.score > b.score) {
       return -1;
@@ -93,11 +90,10 @@ export default function Classifica() {
           let _poResults: any = parsePlayoffResults(_results, manual);
           setPoResults(_poResults);
           let _grResults: any = _results.slice(0, 48);
-          console.log("_grResults", _grResults);
           setGrResults(_grResults);
 
           let lastPlayed = 57;
-          
+
           setVisibleColumns([lastPlayed, lastPlayed + 1, lastPlayed + 2]);
         });
         setAllPlayer(
@@ -117,8 +113,16 @@ export default function Classifica() {
     if (node !== null) getClassifica();
   }, []);
 
-  const renderTeams = (rows: any, cols: any, round: any, teamIds: any, isRes: boolean, imgSize: string, fontSize: number ) => {
-    return rows.map((ind:any) => (
+  const renderTeams = (
+    rows: any,
+    cols: any,
+    round: any,
+    teamIds: any,
+    isRes: boolean,
+    imgSize: string,
+    fontSize: number
+  ) => {
+    return rows.map((ind: any) => (
       <div style={{ marginTop: "-4px", marginBottom: "-4px" }} key={ind}>
         {teamIds.slice(ind * cols, (ind + 1) * cols).map((tid: any) => (
           <span key={tid}>
@@ -130,9 +134,7 @@ export default function Classifica() {
             {/* {create a span with font-size 8} */}
             <span
               className={
-                isRes && poResults[round].includes(tid)
-                  ? "text-success"
-                  : ""
+                isRes && poResults[round].includes(tid) ? "text-success" : ""
               }
               style={{ fontSize }}
             >
@@ -179,9 +181,9 @@ export default function Classifica() {
         <div
           style={{
             width: "100vw",
-           padding:"10px",
-           position:"sticky",
-           top:"30px"
+            padding: "10px",
+            position: "sticky",
+            top: "30px",
           }}
           className="d-flex justify-content-between"
         >
@@ -253,7 +255,6 @@ export default function Classifica() {
                 } else if (col >= 48 && col < 56) {
                   let colLetter: any = colGroup[col];
                   let groupColumn: any = poResults[colLetter];
-                  console.log("groupColumn", groupColumn);
                   return (
                     <th key={col}>
                       {groupColumn[0] && (
@@ -295,35 +296,75 @@ export default function Classifica() {
                 } else if (col === 56) {
                   return (
                     <th key={col}>
-                      <>{renderTeams([0, 1, 2, 3, 4 ,5 ,6 ,7 , 8], 1, QUARTERS, poResults[QUARTERS], false, "12px", 9)}</>
+                      <>
+                        {renderTeams(
+                          [0, 1, 2, 3, 4, 5, 6, 7, 8],
+                          1,
+                          QUARTERS,
+                          poResults[QUARTERS],
+                          false,
+                          "12px",
+                          9
+                        )}
+                      </>
                       <div>{`Quarti(${pointValues[QUARTERS]}pt)`} </div>
                     </th>
                   );
                 } else if (col === 57) {
                   return (
                     <th key={col}>
-                      <>{renderTeams([0, 1, 2, 3], 1, SEMIS, poResults[SEMIS], false, "14px", 10)}</>
+                      <>
+                        {renderTeams(
+                          [0, 1, 2, 3],
+                          1,
+                          SEMIS,
+                          poResults[SEMIS],
+                          false,
+                          "14px",
+                          10
+                        )}
+                      </>
                       <div>{`Semi(${pointValues[SEMIS]}pt)`} </div>
                     </th>
                   );
                 } else if (col === 58) {
                   return (
                     <th key={col}>
-                      <>{renderTeams([0, 1], 1, THIRDS, poResults[THIRDS], false, "16px", 11)}</>
+                      <>
+                        {renderTeams(
+                          [0, 1],
+                          1,
+                          THIRDS,
+                          poResults[THIRDS],
+                          false,
+                          "16px",
+                          11
+                        )}
+                      </>
                       <div>{`Terzo(${pointValues[THIRDS]}pt)`} </div>
                     </th>
                   );
                 } else if (col === 59) {
                   return (
                     <th key={col}>
-                      <>{renderTeams([0, 1], 1, FINAL, poResults[FINAL], false, "18px", 12)}</>
+                      <>
+                        {renderTeams(
+                          [0, 1],
+                          1,
+                          FINAL,
+                          poResults[FINAL],
+                          false,
+                          "18px",
+                          12
+                        )}
+                      </>
                       <div>{`Finale(${pointValues[FINAL]}pt)`} </div>
                     </th>
                   );
                 } else if (col === 60) {
                   return (
                     <th key={col}>
-                      <div>
+                      <div style={{ textAlign: "center" }}>
                         {poResults[WINNER] && (
                           <img
                             style={{ width: "20px", height: "20px" }}
@@ -338,7 +379,7 @@ export default function Classifica() {
                 } else if (col === 61) {
                   return (
                     <th key={col}>
-                      <div>
+                      <div style={{ textAlign: "center" }}>
                         {poResults[BOMBER as keyof typeof poResults] && (
                           <img
                             style={{ width: "20px", height: "20px" }}
@@ -457,7 +498,17 @@ export default function Classifica() {
                             <div className="h6 text-center">
                               {el?.poScores[QUARTERS] || 0}
                             </div>
-                            <>{renderTeams([0, 1, 2, 3, 4 ,5 ,6 ,7 , 8], 1, QUARTERS, el?.poBets[QUARTERS], true, "12px", 9)}</>
+                            <>
+                              {renderTeams(
+                                [0, 1, 2, 3, 4, 5, 6, 7, 8],
+                                1,
+                                QUARTERS,
+                                el?.poBets[QUARTERS],
+                                true,
+                                "12px",
+                                9
+                              )}
+                            </>
                           </th>
                         );
                       } else if (col === 57) {
@@ -466,7 +517,17 @@ export default function Classifica() {
                             <div className="h6 text-center">
                               {el?.poScores[SEMIS] || 0}
                             </div>
-                            <>{renderTeams([0, 1, 2, 3], 1, SEMIS, el?.poBets[SEMIS], true, "14px", 10)}</>
+                            <>
+                              {renderTeams(
+                                [0, 1, 2, 3],
+                                1,
+                                SEMIS,
+                                el?.poBets[SEMIS],
+                                true,
+                                "14px",
+                                10
+                              )}
+                            </>
                           </th>
                         );
                       } else if (col === 58) {
@@ -475,7 +536,17 @@ export default function Classifica() {
                             <div className="h6 text-center">
                               {el?.poScores[THIRDS] || 0}
                             </div>
-                            <>{renderTeams([0, 1], 1, THIRDS, el?.poBets[THIRDS], true, "16px", 11)}</>
+                            <>
+                              {renderTeams(
+                                [0, 1],
+                                1,
+                                THIRDS,
+                                el?.poBets[THIRDS],
+                                true,
+                                "16px",
+                                11
+                              )}
+                            </>
                           </th>
                         );
                       } else if (col === 59) {
@@ -484,17 +555,29 @@ export default function Classifica() {
                             <div className="h6 text-center">
                               {el?.poScores[FINAL] || 0}
                             </div>
-                            <>{renderTeams([0, 1], 1, FINAL, el?.poBets[FINAL], true, "18px", 12)}</>
+                            <>
+                              {renderTeams(
+                                [0, 1],
+                                1,
+                                FINAL,
+                                el?.poBets[FINAL],
+                                true,
+                                "18px",
+                                12
+                              )}
+                            </>
                           </th>
                         );
                       } else if (col === 60) {
                         return (
                           <th key={col}>
-                            <div>{el?.poScores[WINNER] || 0}</div>
-                            <div>
+                            <div className="h6" style={{ textAlign: "center" }}>
+                              {el?.poScores[WINNER] || 0}
+                            </div>
+                            <div style={{ textAlign: "center" }}>
                               {el?.poBets[WINNER] && (
                                 <img
-                                  style={{ width: "20px", height: "20px" }}
+                                  style={{ width: "35px", height: "35px" }}
                                   src={
                                     flags[
                                       el?.poBets[WINNER] as keyof typeof flags
@@ -503,17 +586,32 @@ export default function Classifica() {
                                   alt="flag"
                                 />
                               )}
+                              <h6
+                                className={
+                                  poResults[WINNER as keyof typeof poResults] === el?.poBets[WINNER]
+                                    ? "text-success"
+                                    : ""
+                                }
+                              >
+                                {
+                                  teams.find(
+                                    (team) => team.team_id == el?.poBets[WINNER]
+                                  )?.short_code
+                                }
+                              </h6>
                             </div>
                           </th>
                         );
                       } else if (col === 61) {
                         return (
                           <th key={col}>
-                            <div>{el?.poScores[BOMBER] || 0}</div>
-                            <div>
+                            <div className="h6" style={{ textAlign: "center" }}>
+                              {el?.poScores[BOMBER] || 0}
+                            </div>
+                            <div style={{ textAlign: "center" }}>
                               {el?.poBets[BOMBER] && (
                                 <img
-                                  style={{ width: "20px", height: "20px" }}
+                                  style={{ width: "35px", height: "35px" }}
                                   src={
                                     flags[
                                       el?.poBets[BOMBER] as keyof typeof flags
@@ -522,6 +620,19 @@ export default function Classifica() {
                                   alt="flag"
                                 />
                               )}
+                              <h6
+                                className={
+                                  poResults[BOMBER as keyof typeof poResults] === el?.poBets[BOMBER]
+                                    ? "text-success"
+                                    : ""
+                                }
+                              >
+                                {
+                                  teams.find(
+                                    (team) => team.team_id == el?.poBets[BOMBER]
+                                  )?.short_code
+                                }
+                              </h6>
                             </div>
                           </th>
                         );
